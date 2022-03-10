@@ -1,6 +1,7 @@
 ---
 title: "UFRGS - Especialização em Ciência de Dados SERPRO - INF/UFRGS (2022-2023)"
-output: html_notebook
+#output: html_notebook
+output: rmarkdown::github_document
 ---
 
 |            |                        |
