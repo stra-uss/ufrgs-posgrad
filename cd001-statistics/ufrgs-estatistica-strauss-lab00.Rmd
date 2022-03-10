@@ -1,7 +1,7 @@
 ---
 title: "UFRGS - Especialização em Ciência de Dados SERPRO - INF/UFRGS (2022-2023)"
-#output: html_notebook
-output: rmarkdown::github_document
+output: md_document
+  
 ---
 
 |            |                        |
@@ -12,7 +12,6 @@ output: rmarkdown::github_document
 | Data       | 10/03/2022             |
 
 **LAB-00 e LAB-01 - Laboratórios 0 e 1**
-
 
 Nas páginas anteriores, você recriou algumas das exposições e análises preliminares dos dados de batismo de Arbuthnot. Sua tarefa consiste repetir essas etapas, mas para os registros atuais de nascimento dos Estados Unidos.
 
@@ -54,7 +53,7 @@ print('Dimensão do dataset:')
 dim(present)
 ```
 
-2.  Como estas contagens se comparam aos dados de Arbuthnot? Eles estão numa escala similar?
+1.  Como estas contagens se comparam aos dados de Arbuthnot? Eles estão numa escala similar?
 
 ```{r}
 n_distinct(present$year)
@@ -69,10 +68,7 @@ ggplot(present, aes(year)) +
 ```
 
 ```{r}
-present %>%
-  mutate(childs = girls + boys) %>% 
-  ggplot() +
-  geom_point(aes(x = year, y = childs, color = childs), widthDetails())
+
 ```
 
 ```{r}
@@ -87,8 +83,8 @@ ggplot(present) + geom_point(mapping = aes(x = year, y = boys), size=0.5)
 ```
 
 ```{r}
-plt_boys  = ggplot(present) + geom_point(mapping = aes(x = year, y = boys)) 
-grid.arrange(plt_girls, plt_boys, nrow=1, ncol=2)
+#plt_boys  = ggplot(present) + geom_point(mapping = aes(x = year, y = boys)) 
+#grid.arrange(plt_girls, plt_boys, nrow=1, ncol=2)
 
 ```
 
@@ -99,19 +95,19 @@ present %>%
   geom_point(aes(x = year, y = childs, color = childs))
 ```
 
-3.  A observação de Arbuthnot de que os meninos nascem numa proporção maior que as meninas se mantém nos EUA
+1.  A observação de Arbuthnot de que os meninos nascem numa proporção maior que as meninas se mantém nos EUA
 
 ```{r}
-plt_girls = ggplot(present) + geom_point(mapping = aes(x = year, y = girls)) 
+#plt_girls = ggplot(present) + geom_point(mapping = aes(x = year, y = girls)) 
 ```
 
-4.  Crie um gráfico que mostre a razão de meninos para meninas para cada ano do conjunto de dados. O que você pode verificar?
+1.  Crie um gráfico que mostre a razão de meninos para meninas para cada ano do conjunto de dados. O que você pode verificar?
 
 ```{r}
 
 ```
 
-5.  Em qual ano se verifica o maior número de nascimentos nos EUA? Você pode utilizar os arquivos de ajuda ou o cartão de referência do R (<http://cran.r-project.org/doc/contrib/Short-refcard.pdf> ) para encontrar comandos úteis.
+1.  Em qual ano se verifica o maior número de nascimentos nos EUA? Você pode utilizar os arquivos de ajuda ou o cartão de referência do R (<http://cran.r-project.org/doc/contrib/Short-refcard.pdf> ) para encontrar comandos úteis.
 
 ```{r}
 
@@ -125,28 +121,28 @@ plt_girls = ggplot(present) + geom_point(mapping = aes(x = year, y = girls))
 
 ```
 
-2.  Vamos considerar uma nova variável: a diferença entre o peso desejado (wtdesire) e o peso atual (weight). Crie esta nova variável subtraindo as duas colunas na base de dados e atribuindo-as a um novo objeto chamado wdiff.
+1.  Vamos considerar uma nova variável: a diferença entre o peso desejado (wtdesire) e o peso atual (weight). Crie esta nova variável subtraindo as duas colunas na base de dados e atribuindo-as a um novo objeto chamado wdiff.
 
 ```{r}
 
 ```
 
-3.  Que tipo de dado está contido na variável wdiff? Se uma observação de wdiff é 0, o que isso implica com relação ao peso atual e desejado de uma pessoas? E se o valor de wdiff for positivo ou negativo?
+1.  Que tipo de dado está contido na variável wdiff? Se uma observação de wdiff é 0, o que isso implica com relação ao peso atual e desejado de uma pessoas? E se o valor de wdiff for positivo ou negativo?
 
 ```{r}
 ```
 
-4.  Descreva a distribuição de wdiff em termos de seu centro, forma e variação, incluindo qualquer gráfico que você usar. O que isso nos diz sobre como as pessoas se sentem a respeito do seu peso atual?
+1.  Descreva a distribuição de wdiff em termos de seu centro, forma e variação, incluindo qualquer gráfico que você usar. O que isso nos diz sobre como as pessoas se sentem a respeito do seu peso atual?
 
 ```{r}
 ```
 
-5.  Utilizando sumários numéricos e um gráfico de caixas lado-a-lado, determine se homens tendem a ver seu peso diferentemente das mulheres.
+1.  Utilizando sumários numéricos e um gráfico de caixas lado-a-lado, determine se homens tendem a ver seu peso diferentemente das mulheres.
 
 ```{r}
 ```
 
-6.  Agora chegou a hora de usar a criatividade. Encontre a média e o desvio padrão de weight e determine qual a proporção de pesos que estão a um desvio padrão da média.
+1.  Agora chegou a hora de usar a criatividade. Encontre a média e o desvio padrão de weight e determine qual a proporção de pesos que estão a um desvio padrão da média.
 
 ```{r}
 ```
