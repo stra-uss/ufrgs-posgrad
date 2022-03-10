@@ -12,6 +12,7 @@ output: html_notebook
 
 **LAB-00 e LAB-01 - Laboratórios 0 e 1**
 
+
 Nas páginas anteriores, você recriou algumas das exposições e análises preliminares dos dados de batismo de Arbuthnot. Sua tarefa consiste repetir essas etapas, mas para os registros atuais de nascimento dos Estados Unidos.
 
 Carregue os dados atuais com o seguinte comando.
