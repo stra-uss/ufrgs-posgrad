@@ -9,7 +9,7 @@ output: md_document
 #install.packages("gridExtra")
 library(ggplot2)
 library(dplyr, warn.conflicts = FALSE)
-#library("gridExtra")
+library("gridExtra", warn.conflicts = FALSE)
 ```
 
 |            |                        |
@@ -64,7 +64,6 @@ names(present)
 #### 2. Como estas contagens se comparam aos dados de Arbuthnot? Eles estão numa escala similar?
 
 ###### Conforme gráficos a seguir, observa-se, no estudo de Arbuthnot, um aumento na quantidade de batismos e, consequentemente, nascimentos comparando os perídos de 1640 a 1700. Posteriormente, no período de 1940 a 2000, visualmente, observa-se a mesma tendência, entretanto, numa escala maior.
-
 ```{r}
 plt_girls_arbuthnot = ggplot(arbuthnot) + geom_point(mapping = aes(x = year, y = girls) , color="red") + ggtitle("Arbuthnot") 
 plt_guys_arbuthnot = ggplot(arbuthnot) + geom_point(mapping = aes(x = year, y = boys), color='darkblue') + ggtitle("Arbuthnot")
