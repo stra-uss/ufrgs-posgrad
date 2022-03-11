@@ -58,28 +58,62 @@ w_real = histogram(cdc$wr_kg)
 w_desired = histogram(cdc$wd_kg)
 ```
 
-2.  Vamos considerar uma nova variável: a diferença entre o peso desejado (wtdesire) e o peso atual (weight). Crie esta nova variável subtraindo as duas colunas na base de dados e atribuindo-as a um novo objeto chamado wdiff.
+##### 2.  Vamos considerar uma nova variável: a diferença entre o peso desejado (wtdesire) e o peso atual (weight). Crie esta nova variável subtraindo as duas colunas na base de dados e atribuindo-as a um novo objeto chamado wdiff.
+
 
 ```{r}
+cdc$wdiff = (cdc$wtdesire - cdc$weight) *  0.453592 
+ggplot(cdc) + geom_point(mapping = aes(x = age, y = wdiff) , color="blue") + ggtitle("Peso desejado - Peso real * idade") 
+```
+
+##### 3.  Que tipo de dado está contido na variável wdiff? Se uma observação de wdiff é 0, o que isso implica com relação ao peso atual e desejado de uma pessoas? E se o valor de wdiff for positivo ou negativo?
+
+```{r}
+head(cdc$wdiff, 5)
+```
+
+```{r}
+typeof(cdc$wdiff)
+```
+Se wdiff = 0 então a meta de peso ideal estipulada foi alcançada - peso ideal melhor caso
+Se wdiff < 0 então, tende a sobrepeso
+Se wdiff > 0 então, tende a subpeso
+
+
+##### 4.  Descreva a distribuição de wdiff em termos de seu centro, forma e variação, incluindo qualquer gráfico que você usar. O que isso nos diz sobre como as pessoas se sentem a respeito do seu peso atual?
+
+Curiosamente, conforme gráfico a seguir, a distribuição se concentra em indivíduos que estão satisfeitos com seu atual peso, tendendo a valores de pesos com menores graus desobrepeso.
+
+```{r}
+w_wdiff = histogram(cdc$wdiff)
+```
+
+##### 5.  Utilizando sumários numéricos e um gráfico de caixas lado-a-lado, determine se homens tendem a ver seu peso diferentemente das mulheres.
+
+Como observado no gráfico a seguir, complementando pela idade, observa-se que os homens estão mais distantes da linha Zero, ou seja, o peso idealizado.
+
+```{r}
+ggplot(cdc, mapping = aes(x=age, y=wdiff, fill=gender)) +
+  geom_col()
+```
+```{r}
+boxplot(cdc$wdiff ~ cdc$gender)
 
 ```
 
-3.  Que tipo de dado está contido na variável wdiff? Se uma observação de wdiff é 0, o que isso implica com relação ao peso atual e desejado de uma pessoas? E se o valor de wdiff for positivo ou negativo?
+
+##### 6.  Agora chegou a hora de usar a criatividade. Encontre a média e o desvio padrão de weight e determine qual a proporção de pesos que estão a um desvio padrão da média.
 
 ```{r}
+mean(cdc$weight)
 ```
 
-4.  Descreva a distribuição de wdiff em termos de seu centro, forma e variação, incluindo qualquer gráfico que você usar. O que isso nos diz sobre como as pessoas se sentem a respeito do seu peso atual?
-
 ```{r}
+sd(cdc$weight)
 ```
 
-5.  Utilizando sumários numéricos e um gráfico de caixas lado-a-lado, determine se homens tendem a ver seu peso diferentemente das mulheres.
 
 ```{r}
-```
+w = histogram(cdc$weight)
 
-6.  Agora chegou a hora de usar a criatividade. Encontre a média e o desvio padrão de weight e determine qual a proporção de pesos que estão a um desvio padrão da média.
-
-```{r}
 ```
