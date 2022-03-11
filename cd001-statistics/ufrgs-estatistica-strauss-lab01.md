@@ -49,7 +49,7 @@
 
 #### **LAB-1** - Tarefas
 
-##### 1. Crie um gráfico de dispersão da variável peso em relação ao peso desejado. Defina a relação entre essas duas variáveis.
+##### **1. Crie um gráfico de dispersão da variável peso em relação ao peso desejado. Defina a relação entre essas duas variáveis.**
 
     cdc$wr_kg = 0.453592 * cdc$weight
     cdc$wd_kg = 0.453592 * cdc$wtdesire
@@ -76,18 +76,15 @@ peso real e peso desejado.
     w_desired = histogram(cdc$wd_kg)
 
 ![](ufrgs-estatistica-strauss-lab01_files/figure-markdown_strict/unnamed-chunk-7-1.png)
-\##### 2. Vamos considerar uma nova variável: a diferença entre o peso
-desejado (wtdesire) e o peso atual (weight). Crie esta nova variável
-subtraindo as duas colunas na base de dados e atribuindo-as a um novo
-objeto chamado wdiff.
+
+##### **2. Vamos considerar uma nova variável: a diferença entre o peso desejado (wtdesire) e o peso atual (weight). Crie esta nova variável subtraindo as duas colunas na base de dados e atribuindo-as a um novo objeto chamado wdiff.**
 
     cdc$wdiff = (cdc$wtdesire - cdc$weight) *  0.453592 
     ggplot(cdc) + geom_point(mapping = aes(x = age, y = wdiff) , color="blue") + ggtitle("Peso desejado (Kg) - Peso real (Kg) * idade") 
 
 ![](ufrgs-estatistica-strauss-lab01_files/figure-markdown_strict/unnamed-chunk-8-1.png)
-\##### 3. Que tipo de dado está contido na variável wdiff? Se uma
-observação de wdiff é 0, o que isso implica com relação ao peso atual e
-desejado de uma pessoas? E se o valor de wdiff for positivo ou negativo?
+
+##### **3. Que tipo de dado está contido na variável wdiff? Se uma observação de wdiff é 0, o que isso implica com relação ao peso atual e desejado de uma pessoas? E se o valor de wdiff for positivo ou negativo?**
 
 ###### Visualização dos 5 primeiros valores ca covariável wdiif
 
@@ -107,7 +104,7 @@ Se wdiff = 0 então a meta de peso ideal estipulada foi alcançada - peso
 ideal melhor caso Se wdiff &lt; 0 então, tende a sobrepeso Se wdiff &gt;
 0 então, tende a subpeso
 
-##### 4. Descreva a distribuição de wdiff em termos de seu centro, forma e variação, incluindo qualquer gráfico que você usar. O que isso nos diz sobre como as pessoas se sentem a respeito do seu peso atual?
+##### **4. Descreva a distribuição de wdiff em termos de seu centro, forma e variação, incluindo qualquer gráfico que você usar. O que isso nos diz sobre como as pessoas se sentem a respeito do seu peso atual?**
 
 ###### Curiosamente, conforme gráfico a seguir, a distribuição se concentra em indivíduos que estão satisfeitos com seu atual peso, tendendo a valores de pesos com menores graus desobrepeso.
 
@@ -115,7 +112,7 @@ ideal melhor caso Se wdiff &lt; 0 então, tende a sobrepeso Se wdiff &gt;
 
 ![](ufrgs-estatistica-strauss-lab01_files/figure-markdown_strict/unnamed-chunk-11-1.png)
 
-##### 5. Utilizando sumários numéricos e um gráfico de caixas lado-a-lado, determine se homens tendem a ver seu peso diferentemente das mulheres.
+##### **5. Utilizando sumários numéricos e um gráfico de caixas lado-a-lado, determine se homens tendem a ver seu peso diferentemente das mulheres.**
 
 ###### Como observado nos gráficos box plots a seguir, observa-se, no gráfico das mulheres (F), a mediana e o primeiro quartil mais afastados de Zero, se comparado aos homens, ou seja, indicando maior sobrepeso. Já no gráfico dos homens (M), contraditoriamente, a mediana se aproxima mais do zero. Entretanto, se observam mais outlier para valores acima de zero, o que pode ser um indício de indicativo de que homens se imaginam com mais sobrepeso do que, de fato, estão.
 
@@ -124,7 +121,7 @@ ideal melhor caso Se wdiff &lt; 0 então, tende a sobrepeso Se wdiff &gt;
 
 ![](ufrgs-estatistica-strauss-lab01_files/figure-markdown_strict/unnamed-chunk-12-1.png)
 
-##### 6. Agora chegou a hora de usar a criatividade. Encontre a média e o desvio padrão de weight e determine qual a proporção de pesos que estão a um desvio padrão da média.
+##### **6. Agora chegou a hora de usar a criatividade. Encontre a média e o desvio padrão de weight e determine qual a proporção de pesos que estão a um desvio padrão da média.**
 
 ###### Média do peso (em Kg)
 
