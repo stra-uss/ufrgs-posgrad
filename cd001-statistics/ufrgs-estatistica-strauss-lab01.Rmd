@@ -3,13 +3,14 @@ title: "UFRGS - Especialização em Ciência de Dados SERPRO - INF/UFRGS (2022-2
 #output: md_document
 output: html_document
 ---
-
-|            |                        |
-|------------|------------------------|
-| Disciplina | CD001-Estatística      |
-| Professora | Lisiane Selau          |
-| Aluno      | Strauss Cunha Carvalho |
-| Data       | 11/03/2022             |
+|             |                        |
+|-------------|------------------------|
+| Disciplina  | CD001-Estatística      |
+| Professora  | Lisiane Selau          |
+| Aluno       | Strauss Cunha Carvalho |
+| Labarotório | LAB-01                 |
+| Data        | 10/03/2022             |
+<br>
 
 ```{r}
 #install.packages("ggplot2")
@@ -19,8 +20,9 @@ library(ggplot2)
 library(dplyr, warn.conflicts = FALSE)
 library("gridExtra", warn.conflicts = FALSE)
 ```
+<br>
 
-#### **LAB 1** - Tarefas do Laboratório 1
+#### **LAB-01** - Tarefas do Laboratório 1
 
 ###### Carregamento dos Datasets
 ```{r}
@@ -33,6 +35,8 @@ source("http://www.openintro.org/stat/data/cdc.R")
 str(cdc)
 ```
 #### **LAB-1** - Tarefas
+
+<br>
 
 ##### __1. Crie um gráfico de dispersão da variável peso em relação ao peso desejado. Defina a relação entre essas duas variáveis.__
 
@@ -63,6 +67,8 @@ par(mfrow=c(1,2))
 w_real = histogram(cdc$wr_kg)
 w_desired = histogram(cdc$wd_kg)
 ```
+<br>
+<br>
 
 ##### __2.  Vamos considerar uma nova variável: a diferença entre o peso desejado (wtdesire) e o peso atual (weight). Crie esta nova variável subtraindo as duas colunas na base de dados e atribuindo-as a um novo objeto chamado wdiff.__
 
@@ -70,6 +76,9 @@ w_desired = histogram(cdc$wd_kg)
 cdc$wdiff = (cdc$wtdesire - cdc$weight) *  0.453592 
 ggplot(cdc) + geom_point(mapping = aes(x = age, y = wdiff) , color="blue") + ggtitle("Peso desejado (Kg) - Peso real (Kg) * idade") 
 ```
+<br>
+<br>
+
 ##### __3.  Que tipo de dado está contido na variável wdiff? Se uma observação de wdiff é 0, o que isso implica com relação ao peso atual e desejado de uma pessoas? E se o valor de wdiff for positivo ou negativo?__
 
 ###### _Visualização dos 5 primeiros valores ca covariável wdiif_
@@ -88,6 +97,9 @@ Se wdiff = 0 então a meta de peso ideal estipulada foi alcançada - peso ideal 
 Se wdiff < 0 então, tende a sobrepeso
 Se wdiff > 0 então, tende a subpeso
 
+<br>
+<br>
+
 ##### __4.  Descreva a distribuição de wdiff em termos de seu centro, forma e variação, incluindo qualquer gráfico que você usar. O que isso nos diz sobre como as pessoas se sentem a respeito do seu peso atual?__
 
 ###### _Curiosamente, conforme gráfico a seguir, a distribuição se concentra em indivíduos que estão satisfeitos com seu atual peso, tendendo a valores de pesos com menores graus desobrepeso._
@@ -95,6 +107,9 @@ Se wdiff > 0 então, tende a subpeso
 ```{r}
 w_wdiff = histogram(cdc$wdiff)
 ```
+<br>
+<br>
+
 ##### __5.  Utilizando sumários numéricos e um gráfico de caixas lado-a-lado, determine se homens tendem a ver seu peso diferentemente das mulheres.__
 
 ###### _Como observado nos gráficos box plots a seguir, observa-se, no gráfico das mulheres (F), a mediana e o primeiro quartil mais afastados de Zero, se comparado aos homens, ou seja, indicando maior sobrepeso. Já no gráfico dos homens (M), contraditoriamente, a mediana se aproxima mais do zero. Entretanto, se observam mais outlier para valores acima de zero, o que pode ser um indício de indicativo de que homens se imaginam com mais sobrepeso do que, de fato, estão._
@@ -103,6 +118,9 @@ w_wdiff = histogram(cdc$wdiff)
 ggplot(cdc, mapping=aes(x=gender, y=wdiff, color=gender))+geom_boxplot()+geom_boxplot(outlier.color = "red")+ xlab("Gênero") + 
   ylab("Diferença entre peso desejado e peso real")+coord_flip(xlim=c(0, 2))
 ```
+<br>
+<br>
+
 ##### __6.  Agora chegou a hora de usar a criatividade. Encontre a média e o desvio padrão de weight e determine qual a proporção de pesos que estão a um desvio padrão da média.__
 
 ###### _Média do peso (em Kg)_

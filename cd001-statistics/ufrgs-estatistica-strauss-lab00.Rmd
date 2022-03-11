@@ -3,12 +3,15 @@ title: "UFRGS - Especialização em Ciência de Dados SERPRO - INF/UFRGS (2022-2
 #output: md_document
 output: html_document
 ---
-|            |                        |
-|------------|------------------------|
-| Disciplina | CD001-Estatística      |
-| Professora | Lisiane Selau          |
-| Aluno      | Strauss Cunha Carvalho |
-| Data       | 10/03/2022             |
+
+|             |                        |
+|-------------|------------------------|
+| Disciplina  | CD001-Estatística      |
+| Professora  | Lisiane Selau          |
+| Aluno       | Strauss Cunha Carvalho |
+| Labarotório | LAB-00                 |
+| Data        | 10/03/2022             |
+<br>
 
 ```{r}
 #install.packages("ggplot2")
@@ -18,8 +21,9 @@ library(ggplot2)
 library(dplyr, warn.conflicts = FALSE)
 library("gridExtra", warn.conflicts = FALSE)
 ```
+<br>
 
-##### **LAB 0** - Tarefas do Laboratório 0
+##### **LAB-00** - Tarefas do Laboratório 0
 
 ###### Nas páginas anteriores, você recriou algumas das exposições e análises preliminares dos dados de batismo de Arbuthnot. Sua tarefa consiste repetir essas etapas, mas para os registros atuais de nascimento dos Estados Unidos.
 
@@ -46,8 +50,7 @@ str(present)
 ```{r}
 head(present, 5)
 ```
-
-##### **LAB-0** - Tarefas
+<br>
 
 ##### __1. Quais anos estão incluídos neste conjunto de dados? Quais são as dimensões da base de dados e quais são os nomes das colunas ou variáveis?__
 
@@ -66,6 +69,8 @@ dim(present)
 ```{r}
 names(present)
 ```
+<br>
+<br>
 
 ##### __2. Como estas contagens se comparam aos dados de Arbuthnot? Eles estão numa escala similar?__
 
@@ -78,6 +83,8 @@ plt_girls_present = ggplot(present) + geom_point(mapping = aes(x = year, y = gir
 plt_guys_present = ggplot(present) + geom_point(mapping = aes(x = year, y = boys), color="darkblue") + ggtitle("Present")
 grid.arrange(plt_girls_arbuthnot, plt_girls_present, plt_guys_arbuthnot, plt_guys_present, nrow=2, ncol=2)
 ```
+<br>
+<br>
 
 ##### __3. A observação de Arbuthnot de que os meninos nascem numa proporção maior que as meninas se mantém nos EUA?__
 
@@ -106,6 +113,8 @@ girls_rate_present = present %>%
 
 grid.arrange(boys_rate_arbuthnot, boys_rate_present, girls_rate_arbuthnot, girls_rate_present,  nrow=2, ncol=2)
 ```
+<br>
+<br>
 
 ##### __4. Crie um gráfico que mostre a razão de meninos para meninas para cada ano do conjunto de dados. O que você pode verificar?__
 
@@ -124,6 +133,8 @@ girls_per_boys = present %>%
 
 grid.arrange(boys_per_girls, girls_per_boys, nrow=1, ncol=2)
 ```
+<br>
+<br>
 
 ##### __5. Em qual ano se verifica o maior número de nascimentos nos EUA? Você pode utilizar os arquivos de ajuda ou o cartão de referência do R (<http://cran.r-project.org/doc/contrib/Short-refcard.pdf> ) para encontrar comandos úteis.__
 
