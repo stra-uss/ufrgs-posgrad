@@ -6,11 +6,12 @@ output: html_document
 
 |                 |                        |
 |-----------------|------------------------|
-| **Disciplina**  |       CD001-Estatística|
-| **Professora**  |           Lisiane Selau|
-| **Aluno**       |  Strauss Cunha Carvalho|
-| **Labarotório** |                  LAB-00|
-| **Data**        |              11/03/2022|
+| **Disciplina**  |      :CD001-Estatística|
+| **Professora**  |          :Lisiane Selau|
+| **Aluno**       | :Strauss Cunha Carvalho|
+| **Labarotório** |                 :LAB-00|
+| **Data**        |             :11/03/2022|
+
 
 <br>
 
