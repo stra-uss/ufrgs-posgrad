@@ -3,7 +3,6 @@ title: "UFRGS - Especialização em Ciência de Dados SERPRO - INF/UFRGS (2022-2
 #output: md_document
 output: html_document
 ---
-
 |            |                        |
 |------------|------------------------|
 | Disciplina | CD001-Estatística      |
@@ -30,41 +29,48 @@ library("gridExtra", warn.conflicts = FALSE)
 [openinto] ("<http://www.openintro.org/stat/data/present.R>")
 ```
 ###### Carregamento dos Datasets
+
 ```{r}
 source("http://www.openintro.org/stat/data/present.R")
 source("http://www.openintro.org/stat/data/arbuthnot.R")
 ```
 
 ###### Pré-visualização do Dataset
+
 ```{r}
 str(present)
 ```
 
 ###### Pré-visualização do Dataset
+
 ```{r}
 head(present, 5)
 ```
 
 ##### **LAB-0** - Tarefas
 
-###### __1. Quais anos estão incluídos neste conjunto de dados? Quais são as dimensões da base de dados e quais são os nomes das colunas ou variáveis?__
+##### __1. Quais anos estão incluídos neste conjunto de dados? Quais são as dimensões da base de dados e quais são os nomes das colunas ou variáveis?__
 
 ###### _Total de anos no dataset:_
 ```{r}
 n_distinct(present$year)
 ```
+
 ###### _Dimensões do dataset (linhas e colunas):_
 ```{r}
 dim(present)
 ```
+
 ###### _Variáveis independentes do dataset:_
+
 ```{r}
 names(present)
 ```
 
-###### __2. Como estas contagens se comparam aos dados de Arbuthnot? Eles estão numa escala similar?__
+##### __2. Como estas contagens se comparam aos dados de Arbuthnot? Eles estão numa escala similar?__
 
 ###### _Conforme gráficos a seguir, observa-se, no estudo de Arbuthnot, um aumento na quantidade de batismos e, consequentemente, nascimentos comparando os perídos de 1640 a 1700. Posteriormente, no período de 1940 a 2000, visualmente, observa-se a mesma tendência, entretanto, numa escala maior._
+
 ```{r}
 plt_girls_arbuthnot = ggplot(arbuthnot) + geom_point(mapping = aes(x = year, y = girls) , color="red") + ggtitle("Arbuthnot") 
 plt_guys_arbuthnot = ggplot(arbuthnot) + geom_point(mapping = aes(x = year, y = boys), color='darkblue') + ggtitle("Arbuthnot")
@@ -73,9 +79,10 @@ plt_guys_present = ggplot(present) + geom_point(mapping = aes(x = year, y = boys
 grid.arrange(plt_girls_arbuthnot, plt_girls_present, plt_guys_arbuthnot, plt_guys_present, nrow=2, ncol=2)
 ```
 
-###### __3. A observação de Arbuthnot de que os meninos nascem numa proporção maior que as meninas se mantém nos EUA?__
+##### __3. A observação de Arbuthnot de que os meninos nascem numa proporção maior que as meninas se mantém nos EUA?__
 
 ###### _Sim, conforme observado visualmente, ou seja, sem rigor estatístico, nos gráficos a seguir, a taxa de nascimento de meninos é superior à taxa de meninas._
+
 ```{r}
 boys_rate_arbuthnot = arbuthnot %>%
   mutate(boys_rate = arbuthnot$boys / (arbuthnot$boys + arbuthnot$girls)) %>% 
@@ -99,9 +106,11 @@ girls_rate_present = present %>%
 
 grid.arrange(boys_rate_arbuthnot, boys_rate_present, girls_rate_arbuthnot, girls_rate_present,  nrow=2, ncol=2)
 ```
-###### __4. Crie um gráfico que mostre a razão de meninos para meninas para cada ano do conjunto de dados. O que você pode verificar?__
+
+##### __4. Crie um gráfico que mostre a razão de meninos para meninas para cada ano do conjunto de dados. O que você pode verificar?__
 
 ###### _Como se pode observar nos gráficos a seguir, a razão de meninos por meninas é superior a 1 na maior parte do dataset. O contrário, ou seja, as meninas no numerador, tem-se a razão sempre inferior a 1. Portanto, fornecendo indícios de que se nasce mais meninos do que meninas._
+
 ```{r}
 boys_per_girls = present %>%
   mutate(boys_per_girls = present$boys/present$girls) %>% 
@@ -116,7 +125,8 @@ girls_per_boys = present %>%
 grid.arrange(boys_per_girls, girls_per_boys, nrow=1, ncol=2)
 ```
 
-###### __5. Em qual ano se verifica o maior número de nascimentos nos EUA? Você pode utilizar os arquivos de ajuda ou o cartão de referência do R (<http://cran.r-project.org/doc/contrib/Short-refcard.pdf> ) para encontrar comandos úteis.__
+##### __5. Em qual ano se verifica o maior número de nascimentos nos EUA? Você pode utilizar os arquivos de ajuda ou o cartão de referência do R (<http://cran.r-project.org/doc/contrib/Short-refcard.pdf> ) para encontrar comandos úteis.__
+
 ```{r}
 present %>%
   mutate(borns = present$boys+present$girls) %>% 
@@ -125,6 +135,7 @@ present %>%
 ```
 
 ###### _No ano de 1961, houve o maior número de nascimentos nos EUA. Curiosamente, 1 ano após a invenção do comprimido anticoncepcional?_
+
 ```{r}
 present %>% 
     filter(boys+girls == max(boys+girls)) %>% # filter the data.frame to keep row where x is maximum
@@ -132,6 +143,7 @@ present %>%
 ```
 
 ###### _Total de nascimentos no ano de 1961:_
+
 ```{r}
 max(present$boys+present$girls)
 ```
