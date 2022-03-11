@@ -33,7 +33,7 @@
 </tbody>
 </table>
 
-#### **Laboratórios 0 e 1**
+#### **Laboratório 0 - LAB-0**
 
 Nas páginas anteriores, você recriou algumas das exposições e análises
 preliminares dos dados de batismo de Arbuthnot. Sua tarefa consiste
@@ -63,7 +63,7 @@ Carregue os dados atuais com o seguinte comando.
     ## 4 1943 1508959 1427901
     ## 5 1944 1435301 1359499
 
-#### **Lab-00**
+#### **Lab-0**
 
 ##### 1. Quais anos estão incluídos neste conjunto de dados? Quais são as dimensões da base de dados e quais são os nomes das colunas ou variáveis?
 
@@ -176,30 +176,3 @@ Total de nascimentos no ano de 1961:
     max(present$boys+present$girls)
 
     ## [1] 4268326
-
-### **LAB-01 - Laboratório 1**
-
-1.  Crie um gráfico de dispersão da variável peso em relação ao peso
-    desejado. Defina a relação entre essas duas variáveis.
-
-2.  Vamos considerar uma nova variável: a diferença entre o peso
-    desejado (wtdesire) e o peso atual (weight). Crie esta nova variável
-    subtraindo as duas colunas na base de dados e atribuindo-as a um
-    novo objeto chamado wdiff.
-
-3.  Que tipo de dado está contido na variável wdiff? Se uma observação
-    de wdiff é 0, o que isso implica com relação ao peso atual e
-    desejado de uma pessoas? E se o valor de wdiff for positivo ou
-    negativo?
-
-4.  Descreva a distribuição de wdiff em termos de seu centro, forma e
-    variação, incluindo qualquer gráfico que você usar. O que isso nos
-    diz sobre como as pessoas se sentem a respeito do seu peso atual?
-
-5.  Utilizando sumários numéricos e um gráfico de caixas lado-a-lado,
-    determine se homens tendem a ver seu peso diferentemente das
-    mulheres.
-
-6.  Agora chegou a hora de usar a criatividade. Encontre a média e o
-    desvio padrão de weight e determine qual a proporção de pesos que
-    estão a um desvio padrão da média.
