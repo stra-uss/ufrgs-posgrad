@@ -1,0 +1,85 @@
+---
+title: "UFRGS - Especialização em Ciência de Dados SERPRO - INF/UFRGS (2022-2023)"
+output: md_document
+---
+
+```{r}
+#install.packages("ggplot2")
+#install.packages("dplyr")
+#install.packages("gridExtra")
+library(ggplot2)
+library(dplyr, warn.conflicts = FALSE)
+library("gridExtra")
+```
+
+|            |                        |
+|------------|------------------------|
+| Disciplina | CD001-Estatística      |
+| Professora | Lisiane Selau          |
+| Aluno      | Strauss Cunha Carvalho |
+| Data       | 11/03/2022             |
+
+```{r}
+source("http://www.openintro.org/stat/data/cdc.R")
+str(cdc)
+```
+
+#### **Laboratório 1 - LAB-1**
+
+##### 1. Crie um gráfico de dispersão da variável peso em relação ao peso desejado. Defina a relação entre essas duas variáveis.
+
+```{r}
+cdc$wr_kg = 0.453592 * cdc$weight
+cdc$wd_kg = 0.453592 * cdc$wtdesire
+```
+
+```{r}
+ggplot(cdc) + geom_point(mapping = aes(x = wr_kg, y = wd_kg) , color="blue") + ggtitle("Peso real x Peso desejado - Kg") 
+
+```
+
+Correlação de Pearson indica uma forte relação entre peso real e peso desejado.
+
+```{r}
+cor(cdc$wr_kg,cdc$wd_kg)
+```
+
+Teste de suposição de normalidade
+
+```{r}
+
+histogram=function(x){
+  hist(x,prob=T)
+  lines(density(x),col="red")
+  curve(dnorm(x,mean(x), sd(x)),add=T,col="blue")
+}
+par(mfrow=c(1,2))
+w_real = histogram(cdc$wr_kg)
+w_desired = histogram(cdc$wd_kg)
+```
+
+2.  Vamos considerar uma nova variável: a diferença entre o peso desejado (wtdesire) e o peso atual (weight). Crie esta nova variável subtraindo as duas colunas na base de dados e atribuindo-as a um novo objeto chamado wdiff.
+
+```{r}
+
+```
+
+3.  Que tipo de dado está contido na variável wdiff? Se uma observação de wdiff é 0, o que isso implica com relação ao peso atual e desejado de uma pessoas? E se o valor de wdiff for positivo ou negativo?
+
+```{r}
+```
+
+4.  Descreva a distribuição de wdiff em termos de seu centro, forma e variação, incluindo qualquer gráfico que você usar. O que isso nos diz sobre como as pessoas se sentem a respeito do seu peso atual?
+
+```{r}
+```
+
+5.  Utilizando sumários numéricos e um gráfico de caixas lado-a-lado, determine se homens tendem a ver seu peso diferentemente das mulheres.
+
+```{r}
+```
+
+6.  Agora chegou a hora de usar a criatividade. Encontre a média e o desvio padrão de weight e determine qual a proporção de pesos que estão a um desvio padrão da média.
+
+```{r}
+```
