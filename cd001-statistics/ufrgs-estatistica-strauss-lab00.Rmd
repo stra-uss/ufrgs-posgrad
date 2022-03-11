@@ -19,34 +19,34 @@ library(dplyr, warn.conflicts = FALSE)
 library("gridExtra", warn.conflicts = FALSE)
 ```
 
-#### **LAB 0** - Tarefas do Laboratório 0
+##### **LAB 0** - Tarefas do Laboratório 0
 
-###### Nas páginas anteriores, você recriou algumas das exposições e análises preliminares dos dados de batismo de Arbuthnot. Sua tarefa consiste repetir essas etapas, mas para os registros atuais de nascimento dos Estados Unidos.
+####### Nas páginas anteriores, você recriou algumas das exposições e análises preliminares dos dados de batismo de Arbuthnot. Sua tarefa consiste repetir essas etapas, mas para os registros atuais de nascimento dos Estados Unidos.
 
-###### Carregue os dados atuais com o seguinte comando.
+####### Carregue os dados atuais com o seguinte comando.
 
 ```shell
 [openinto] ("<http://www.openintro.org/stat/data/present.R>")
 ```
-###### Carregamento dos Datasets
+####### Carregamento dos Datasets
 ```{r}
 source("http://www.openintro.org/stat/data/present.R")
 source("http://www.openintro.org/stat/data/arbuthnot.R")
 ```
 
-##### Pré-visualização do Dataset
+####### Pré-visualização do Dataset
 ```{r}
 str(present)
 ```
 
-##### Pré-visualização do Dataset
+####### Pré-visualização do Dataset
 ```{r}
 head(present, 5)
 ```
 
-#### **LAB-0** - Tarefas
+##### **LAB-0** - Tarefas
 
-##### 1. Quais anos estão incluídos neste conjunto de dados? Quais são as dimensões da base de dados e quais são os nomes das colunas ou variáveis?
+###### 1. Quais anos estão incluídos neste conjunto de dados? Quais são as dimensões da base de dados e quais são os nomes das colunas ou variáveis?
 
 ###### Total de anos no dataset:
 ```{r}
@@ -61,7 +61,7 @@ dim(present)
 names(present)
 ```
 
-#### 2. Como estas contagens se comparam aos dados de Arbuthnot? Eles estão numa escala similar?
+###### 2. Como estas contagens se comparam aos dados de Arbuthnot? Eles estão numa escala similar?
 
 ###### Conforme gráficos a seguir, observa-se, no estudo de Arbuthnot, um aumento na quantidade de batismos e, consequentemente, nascimentos comparando os perídos de 1640 a 1700. Posteriormente, no período de 1940 a 2000, visualmente, observa-se a mesma tendência, entretanto, numa escala maior.
 ```{r}
@@ -72,7 +72,7 @@ plt_guys_present = ggplot(present) + geom_point(mapping = aes(x = year, y = boys
 grid.arrange(plt_girls_arbuthnot, plt_girls_present, plt_guys_arbuthnot, plt_guys_present, nrow=2, ncol=2)
 ```
 
-#### 3. A observação de Arbuthnot de que os meninos nascem numa proporção maior que as meninas se mantém nos EUA?
+###### 3. A observação de Arbuthnot de que os meninos nascem numa proporção maior que as meninas se mantém nos EUA?
 ###### Sim, conforme observado visualmente, ou seja, sem rigor estatístico, nos gráficos a seguir, a taxa de nascimento de meninos é superior à taxa de meninas.
 
 ```{r}
@@ -99,7 +99,7 @@ girls_rate_present = present %>%
 grid.arrange(boys_rate_arbuthnot, boys_rate_present, girls_rate_arbuthnot, girls_rate_present,  nrow=2, ncol=2)
 ```
 
-#### 4. Crie um gráfico que mostre a razão de meninos para meninas para cada ano do conjunto de dados. O que você pode verificar?
+###### 4. Crie um gráfico que mostre a razão de meninos para meninas para cada ano do conjunto de dados. O que você pode verificar?
 
 ###### Como se pode observar nos gráficos a seguir, a razão de meninos por meninas é superior a 1 na maior parte do dataset. O contrário, ou seja, as meninas no numerador, tem-se a razão sempre inferior a 1. Portanto, fornecendo indícios de que se nasce mais meninos do que meninas.
 ```{r}
@@ -116,7 +116,7 @@ girls_per_boys = present %>%
 grid.arrange(boys_per_girls, girls_per_boys, nrow=1, ncol=2)
 ```
 
-#### 5. Em qual ano se verifica o maior número de nascimentos nos EUA? Você pode utilizar os arquivos de ajuda ou o cartão de referência do R (<http://cran.r-project.org/doc/contrib/Short-refcard.pdf> ) para encontrar comandos úteis.
+###### 5. Em qual ano se verifica o maior número de nascimentos nos EUA? Você pode utilizar os arquivos de ajuda ou o cartão de referência do R (<http://cran.r-project.org/doc/contrib/Short-refcard.pdf> ) para encontrar comandos úteis.
 ```{r}
 present %>%
   mutate(borns = present$boys+present$girls) %>% 

@@ -57,11 +57,14 @@ par(mfrow=c(1,2))
 w_real = histogram(cdc$wr_kg)
 w_desired = histogram(cdc$wd_kg)
 ```
+
 ##### 2.  Vamos considerar uma nova variável: a diferença entre o peso desejado (wtdesire) e o peso atual (weight). Crie esta nova variável subtraindo as duas colunas na base de dados e atribuindo-as a um novo objeto chamado wdiff.
+
 ```{r}
 cdc$wdiff = (cdc$wtdesire - cdc$weight) *  0.453592 
 ggplot(cdc) + geom_point(mapping = aes(x = age, y = wdiff) , color="blue") + ggtitle("Peso desejado (Kg) - Peso real (Kg) * idade") 
 ```
+
 ##### 3.  Que tipo de dado está contido na variável wdiff? Se uma observação de wdiff é 0, o que isso implica com relação ao peso atual e desejado de uma pessoas? E se o valor de wdiff for positivo ou negativo?
 
 ###### Visualização dos 5 primeiros valores ca covariável wdiif
