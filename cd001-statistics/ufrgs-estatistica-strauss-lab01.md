@@ -57,14 +57,14 @@
     ggplot(cdc) + geom_point(mapping = aes(x = wr_kg, y = wd_kg) , color="blue") + ggtitle("Peso real x Peso desejado - Kg") 
 
 ![](ufrgs-estatistica-strauss-lab01_files/figure-markdown_strict/unnamed-chunk-5-1.png)
-\###### Por meio da correlação de Pearson indica uma forte relação entre
-peso real e peso desejado.
+\###### *Por meio da correlação de Pearson indica uma forte relação
+entre peso real e peso desejado.*
 
     cor(cdc$wr_kg,cdc$wd_kg)
 
     ## [1] 0.8000521
 
-###### Teste de suposição de normalidade
+###### *Teste de suposição de normalidade*
 
     histogram=function(x){
       hist(x,prob=T)
@@ -86,19 +86,19 @@ peso real e peso desejado.
 
 ##### **3. Que tipo de dado está contido na variável wdiff? Se uma observação de wdiff é 0, o que isso implica com relação ao peso atual e desejado de uma pessoas? E se o valor de wdiff for positivo ou negativo?**
 
-###### Visualização dos 5 primeiros valores ca covariável wdiif
+###### *Visualização dos 5 primeiros valores ca covariável wdiif*
 
     head(cdc$wdiff, 5)
 
     ## [1]  0.000000 -4.535920  0.000000 -3.628736 -9.071840
 
-###### Tipo da covariável wdiff
+###### *Tipo da covariável wdiff*
 
     typeof(cdc$wdiff)
 
     ## [1] "double"
 
-###### Covariável wdiff - Descrição
+###### *Covariável wdiff - Descrição*
 
 Se wdiff = 0 então a meta de peso ideal estipulada foi alcançada - peso
 ideal melhor caso Se wdiff &lt; 0 então, tende a sobrepeso Se wdiff &gt;
@@ -106,7 +106,7 @@ ideal melhor caso Se wdiff &lt; 0 então, tende a sobrepeso Se wdiff &gt;
 
 ##### **4. Descreva a distribuição de wdiff em termos de seu centro, forma e variação, incluindo qualquer gráfico que você usar. O que isso nos diz sobre como as pessoas se sentem a respeito do seu peso atual?**
 
-###### Curiosamente, conforme gráfico a seguir, a distribuição se concentra em indivíduos que estão satisfeitos com seu atual peso, tendendo a valores de pesos com menores graus desobrepeso.
+###### *Curiosamente, conforme gráfico a seguir, a distribuição se concentra em indivíduos que estão satisfeitos com seu atual peso, tendendo a valores de pesos com menores graus desobrepeso.*
 
     w_wdiff = histogram(cdc$wdiff)
 
@@ -114,7 +114,7 @@ ideal melhor caso Se wdiff &lt; 0 então, tende a sobrepeso Se wdiff &gt;
 
 ##### **5. Utilizando sumários numéricos e um gráfico de caixas lado-a-lado, determine se homens tendem a ver seu peso diferentemente das mulheres.**
 
-###### Como observado nos gráficos box plots a seguir, observa-se, no gráfico das mulheres (F), a mediana e o primeiro quartil mais afastados de Zero, se comparado aos homens, ou seja, indicando maior sobrepeso. Já no gráfico dos homens (M), contraditoriamente, a mediana se aproxima mais do zero. Entretanto, se observam mais outlier para valores acima de zero, o que pode ser um indício de indicativo de que homens se imaginam com mais sobrepeso do que, de fato, estão.
+###### *Como observado nos gráficos box plots a seguir, observa-se, no gráfico das mulheres (F), a mediana e o primeiro quartil mais afastados de Zero, se comparado aos homens, ou seja, indicando maior sobrepeso. Já no gráfico dos homens (M), contraditoriamente, a mediana se aproxima mais do zero. Entretanto, se observam mais outlier para valores acima de zero, o que pode ser um indício de indicativo de que homens se imaginam com mais sobrepeso do que, de fato, estão.*
 
     ggplot(cdc, mapping=aes(x=gender, y=wdiff, color=gender))+geom_boxplot()+geom_boxplot(outlier.color = "red")+ xlab("Gênero") + 
       ylab("Diferença entre peso desejado e peso real")+coord_flip(xlim=c(0, 2))
@@ -123,19 +123,19 @@ ideal melhor caso Se wdiff &lt; 0 então, tende a sobrepeso Se wdiff &gt;
 
 ##### **6. Agora chegou a hora de usar a criatividade. Encontre a média e o desvio padrão de weight e determine qual a proporção de pesos que estão a um desvio padrão da média.**
 
-###### Média do peso (em Kg)
+###### *Média do peso (em Kg)*
 
     mean(cdc$weight) *  0.453592 
 
     ## [1] 76.96683
 
-###### Desvio Padrão
+###### *Desvio Padrão*
 
     sd(cdc$weight) 
 
     ## [1] 40.08097
 
-###### Análise da normalidade dos pesos no dataset
+###### *Análise da normalidade dos pesos no dataset*
 
     w = histogram(cdc$weight)
 
