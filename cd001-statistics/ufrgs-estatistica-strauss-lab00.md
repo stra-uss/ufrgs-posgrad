@@ -87,6 +87,12 @@ Variáveis independentes do dataset:
 
 #### 2. Como estas contagens se comparam aos dados de Arbuthnot? Eles estão numa escala similar?
 
+Conforme gráficos a seguir, observa-se, no estudo de Arbuthnot, um
+aumento na quantidade de batismos e, consequentemente, nascimentos
+comparando os perídos de 1640 a 1700. Posteriormente, no período de 1940
+a 2000, visualmente, observa-se a mesma tendência, entretanto, numa
+escala maior.
+
     plt_girls_arbuthnot = ggplot(arbuthnot) + geom_point(mapping = aes(x = year, y = girls) , color="red") + ggtitle("Arbuthnot") 
     plt_guys_arbuthnot = ggplot(arbuthnot) + geom_point(mapping = aes(x = year, y = boys), color='darkblue') + ggtitle("Arbuthnot")
     plt_girls_present = ggplot(present) + geom_point(mapping = aes(x = year, y = girls), color="red") + ggtitle("Present")
@@ -95,48 +101,83 @@ Variáveis independentes do dataset:
 
 ![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-8-1.png)
 
-    ggplot(present, aes(year)) + 
-      geom_line(aes(y = girls, colour = "girls")) + 
-      geom_line(aes(y = boys, colour  = "guys")) +
-      ggtitle("Nascimentos nos Estados Unidos de 1940 a 2000") +
-      xlab("Ano") + ylab("Nascimentos")
+#### 3. A observação de Arbuthnot de que os meninos nascem numa proporção maior que as meninas se mantém nos EUA?
+
+Sim, conforme observado visualmente, ou seja, sem rigor estatístico, nos
+gráficos a seguir, a taxa de nascimento de meninos é superior à taxa de
+meninas.
+
+    boys_rate_arbuthnot = arbuthnot %>%
+      mutate(boys_rate = arbuthnot$boys / (arbuthnot$boys + arbuthnot$girls)) %>% 
+      ggplot() +
+      geom_point(aes(x = year, y = boys_rate, color = boys_rate)) + ggtitle("Arbuthnot - Guys")
+
+    girls_rate_arbuthnot = arbuthnot %>%
+      mutate(girls_rate = arbuthnot$girls / (arbuthnot$boys + arbuthnot$girls)) %>% 
+      ggplot() +
+      geom_point(aes(x = year, y = girls_rate, color = girls_rate)) + ggtitle("Arbuthnot - Girls")
+
+    boys_rate_present = present %>%
+      mutate(boys_rate = present$boys / (present$boys + present$girls)) %>% 
+      ggplot() +
+      geom_point(aes(x = year, y = boys_rate, color = boys_rate)) + ggtitle("Present - Guys")
+
+    girls_rate_present = present %>%
+      mutate(girls_rate = present$girls / (present$boys + present$girls)) %>% 
+      ggplot() +
+      geom_point(aes(x = year, y = girls_rate, color = girls_rate)) + ggtitle("Present - Girls")
+
+    grid.arrange(boys_rate_arbuthnot, boys_rate_present, girls_rate_arbuthnot, girls_rate_present,  nrow=2, ncol=2)
 
 ![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-9-1.png)
 
-    ggplot(present) + geom_point(mapping = aes(x = year, y = girls), size=0.5)
+#### 4. Crie um gráfico que mostre a razão de meninos para meninas para cada ano do conjunto de dados. O que você pode verificar?
 
-![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-12-1.png)
+Como se pode observar nos gráficos a seguir, a razão de meninos por
+meninas é superior a 1 na maior parte do dataset. O contrário, ou seja,
+as meninas no numerador, tem-se a razão sempre inferior a 1. Portanto,
+fornecendo indícios de que se nasce mais meninos do que meninas.
 
-    ggplot(present) + geom_point(mapping = aes(x = year, y = boys), size=0.5)
+    boys_per_girls = present %>%
+      mutate(boys_per_girls = present$boys/present$girls) %>% 
+      ggplot() +
+      geom_point(aes(x = year, y = boys_per_girls, color = boys_per_girls)) + ggtitle("Present  Guys/Girls")
 
-![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-13-1.png)
+    girls_per_boys = present %>%
+      mutate(girls_per_boys = present$girls/present$boys) %>% 
+      ggplot() +
+      geom_point(aes(x = year, y = girls_per_boys, color = girls_per_boys)) + ggtitle("Present  Girls/Guys")
 
-    #plt_boys  = ggplot(present) + geom_point(mapping = aes(x = year, y = boys)) 
-    #grid.arrange(plt_girls, plt_boys, nrow=1, ncol=2)
+    grid.arrange(boys_per_girls, girls_per_boys, nrow=1, ncol=2)
+
+![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-10-1.png)
+
+#### 5. Em qual ano se verifica o maior número de nascimentos nos EUA? Você pode utilizar os arquivos de ajuda ou o cartão de referência do R (<http://cran.r-project.org/doc/contrib/Short-refcard.pdf> ) para encontrar comandos úteis.
 
     present %>%
-      mutate(childs = girls + boys) %>% 
+      mutate(borns = present$boys+present$girls) %>% 
       ggplot() +
-      geom_point(aes(x = year, y = childs, color = childs))
+      geom_point(aes(x = year, y = borns, color = borns)) + ggtitle("Borns")
 
-![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-15-1.png)
+![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-11-1.png)
 
-1.  A observação de Arbuthnot de que os meninos nascem numa proporção
-    maior que as meninas se mantém nos EUA
+No ano de 1961, houve o maior número de nascimentos nos EUA.
+Curiosamente, 1 ano após a invenção do comprimido anticoncepcional?
 
-<!-- -->
+    present %>% 
+        filter(boys+girls == max(boys+girls)) %>% # filter the data.frame to keep row where x is maximum
+        select(year) # select column y)
 
-    #plt_girls = ggplot(present) + geom_point(mapping = aes(x = year, y = girls)) 
+    ##   year
+    ## 1 1961
 
-1.  Crie um gráfico que mostre a razão de meninos para meninas para cada
-    ano do conjunto de dados. O que você pode verificar?
+Total de nascimentos no ano de 1961:
 
-2.  Em qual ano se verifica o maior número de nascimentos nos EUA? Você
-    pode utilizar os arquivos de ajuda ou o cartão de referência do R
-    (<http://cran.r-project.org/doc/contrib/Short-refcard.pdf> ) para
-    encontrar comandos úteis.
+    max(present$boys+present$girls)
 
-**LAB-01 - Laboratório 1**
+    ## [1] 4268326
+
+### **LAB-01 - Laboratório 1**
 
 1.  Crie um gráfico de dispersão da variável peso em relação ao peso
     desejado. Defina a relação entre essas duas variáveis.

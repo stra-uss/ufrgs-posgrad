@@ -64,6 +64,8 @@ names(present)
 
 #### 2. Como estas contagens se comparam aos dados de Arbuthnot? Eles estão numa escala similar?
 
+Conforme gráficos a seguir, observa-se, no estudo de Arbuthnot, um aumento na quantidade de batismos e, consequentemente, nascimentos comparando os perídos de 1640 a 1700. Posteriormente, no período de 1940 a 2000, visualmente, observa-se a mesma tendência, entretanto, numa escala maior.
+
 ```{r}
 plt_girls_arbuthnot = ggplot(arbuthnot) + geom_point(mapping = aes(x = year, y = girls) , color="red") + ggtitle("Arbuthnot") 
 plt_guys_arbuthnot = ggplot(arbuthnot) + geom_point(mapping = aes(x = year, y = boys), color='darkblue') + ggtitle("Arbuthnot")
@@ -72,61 +74,76 @@ plt_guys_present = ggplot(present) + geom_point(mapping = aes(x = year, y = boys
 grid.arrange(plt_girls_arbuthnot, plt_girls_present, plt_guys_arbuthnot, plt_guys_present, nrow=2, ncol=2)
 ```
 
-```{r}
-ggplot(present, aes(year)) + 
-  geom_line(aes(y = girls, colour = "girls")) + 
-  geom_line(aes(y = boys, colour  = "guys")) +
-  ggtitle("Nascimentos nos Estados Unidos de 1940 a 2000") +
-  xlab("Ano") + ylab("Nascimentos")
-```
+#### 3. A observação de Arbuthnot de que os meninos nascem numa proporção maior que as meninas se mantém nos EUA?
+
+Sim, conforme observado visualmente, ou seja, sem rigor estatístico, nos gráficos a seguir, a taxa de nascimento de meninos é superior à taxa de meninas.
 
 ```{r}
+boys_rate_arbuthnot = arbuthnot %>%
+  mutate(boys_rate = arbuthnot$boys / (arbuthnot$boys + arbuthnot$girls)) %>% 
+  ggplot() +
+  geom_point(aes(x = year, y = boys_rate, color = boys_rate)) + ggtitle("Arbuthnot - Guys")
 
+girls_rate_arbuthnot = arbuthnot %>%
+  mutate(girls_rate = arbuthnot$girls / (arbuthnot$boys + arbuthnot$girls)) %>% 
+  ggplot() +
+  geom_point(aes(x = year, y = girls_rate, color = girls_rate)) + ggtitle("Arbuthnot - Girls")
+
+boys_rate_present = present %>%
+  mutate(boys_rate = present$boys / (present$boys + present$girls)) %>% 
+  ggplot() +
+  geom_point(aes(x = year, y = boys_rate, color = boys_rate)) + ggtitle("Present - Guys")
+
+girls_rate_present = present %>%
+  mutate(girls_rate = present$girls / (present$boys + present$girls)) %>% 
+  ggplot() +
+  geom_point(aes(x = year, y = girls_rate, color = girls_rate)) + ggtitle("Present - Girls")
+
+grid.arrange(boys_rate_arbuthnot, boys_rate_present, girls_rate_arbuthnot, girls_rate_present,  nrow=2, ncol=2)
 ```
+
+#### 4. Crie um gráfico que mostre a razão de meninos para meninas para cada ano do conjunto de dados. O que você pode verificar?
+
+Como se pode observar nos gráficos a seguir, a razão de meninos por meninas é superior a 1 na maior parte do dataset. O contrário, ou seja, as meninas no numerador, tem-se a razão sempre inferior a 1. Portanto, fornecendo indícios de que se nasce mais meninos do que meninas.
 
 ```{r}
+boys_per_girls = present %>%
+  mutate(boys_per_girls = present$boys/present$girls) %>% 
+  ggplot() +
+  geom_point(aes(x = year, y = boys_per_girls, color = boys_per_girls)) + ggtitle("Present  Guys/Girls")
+
+girls_per_boys = present %>%
+  mutate(girls_per_boys = present$girls/present$boys) %>% 
+  ggplot() +
+  geom_point(aes(x = year, y = girls_per_boys, color = girls_per_boys)) + ggtitle("Present  Girls/Guys")
+
+grid.arrange(boys_per_girls, girls_per_boys, nrow=1, ncol=2)
 ```
 
-```{r}
-ggplot(present) + geom_point(mapping = aes(x = year, y = girls), size=0.5)
-```
-
-```{r}
-ggplot(present) + geom_point(mapping = aes(x = year, y = boys), size=0.5)
-```
-
-```{r}
-#plt_boys  = ggplot(present) + geom_point(mapping = aes(x = year, y = boys)) 
-#grid.arrange(plt_girls, plt_boys, nrow=1, ncol=2)
-
-```
+#### 5. Em qual ano se verifica o maior número de nascimentos nos EUA? Você pode utilizar os arquivos de ajuda ou o cartão de referência do R (<http://cran.r-project.org/doc/contrib/Short-refcard.pdf> ) para encontrar comandos úteis.
 
 ```{r}
 present %>%
-  mutate(childs = girls + boys) %>% 
+  mutate(borns = present$boys+present$girls) %>% 
   ggplot() +
-  geom_point(aes(x = year, y = childs, color = childs))
+  geom_point(aes(x = year, y = borns, color = borns)) + ggtitle("Borns")
 ```
 
-1.  A observação de Arbuthnot de que os meninos nascem numa proporção maior que as meninas se mantém nos EUA
+No ano de 1961, houve o maior número de nascimentos nos EUA. Curiosamente, 1 ano após a invenção do comprimido anticoncepcional?
 
 ```{r}
-#plt_girls = ggplot(present) + geom_point(mapping = aes(x = year, y = girls)) 
+present %>% 
+    filter(boys+girls == max(boys+girls)) %>% # filter the data.frame to keep row where x is maximum
+    select(year) # select column y)
 ```
 
-1.  Crie um gráfico que mostre a razão de meninos para meninas para cada ano do conjunto de dados. O que você pode verificar?
+Total de nascimentos no ano de 1961:
 
 ```{r}
-
+max(present$boys+present$girls)
 ```
 
-1.  Em qual ano se verifica o maior número de nascimentos nos EUA? Você pode utilizar os arquivos de ajuda ou o cartão de referência do R (<http://cran.r-project.org/doc/contrib/Short-refcard.pdf> ) para encontrar comandos úteis.
-
-```{r}
-
-```
-
-**LAB-01 - Laboratório 1**
+### **LAB-01 - Laboratório 1**
 
 1.  Crie um gráfico de dispersão da variável peso em relação ao peso desejado. Defina a relação entre essas duas variáveis.
 
@@ -134,28 +151,28 @@ present %>%
 
 ```
 
-1.  Vamos considerar uma nova variável: a diferença entre o peso desejado (wtdesire) e o peso atual (weight). Crie esta nova variável subtraindo as duas colunas na base de dados e atribuindo-as a um novo objeto chamado wdiff.
+2.  Vamos considerar uma nova variável: a diferença entre o peso desejado (wtdesire) e o peso atual (weight). Crie esta nova variável subtraindo as duas colunas na base de dados e atribuindo-as a um novo objeto chamado wdiff.
 
 ```{r}
 
 ```
 
-1.  Que tipo de dado está contido na variável wdiff? Se uma observação de wdiff é 0, o que isso implica com relação ao peso atual e desejado de uma pessoas? E se o valor de wdiff for positivo ou negativo?
+3.  Que tipo de dado está contido na variável wdiff? Se uma observação de wdiff é 0, o que isso implica com relação ao peso atual e desejado de uma pessoas? E se o valor de wdiff for positivo ou negativo?
 
 ```{r}
 ```
 
-1.  Descreva a distribuição de wdiff em termos de seu centro, forma e variação, incluindo qualquer gráfico que você usar. O que isso nos diz sobre como as pessoas se sentem a respeito do seu peso atual?
+4.  Descreva a distribuição de wdiff em termos de seu centro, forma e variação, incluindo qualquer gráfico que você usar. O que isso nos diz sobre como as pessoas se sentem a respeito do seu peso atual?
 
 ```{r}
 ```
 
-1.  Utilizando sumários numéricos e um gráfico de caixas lado-a-lado, determine se homens tendem a ver seu peso diferentemente das mulheres.
+5.  Utilizando sumários numéricos e um gráfico de caixas lado-a-lado, determine se homens tendem a ver seu peso diferentemente das mulheres.
 
 ```{r}
 ```
 
-1.  Agora chegou a hora de usar a criatividade. Encontre a média e o desvio padrão de weight e determine qual a proporção de pesos que estão a um desvio padrão da média.
+6.  Agora chegou a hora de usar a criatividade. Encontre a média e o desvio padrão de weight e determine qual a proporção de pesos que estão a um desvio padrão da média.
 
 ```{r}
 ```
