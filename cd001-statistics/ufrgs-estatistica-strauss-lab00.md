@@ -35,14 +35,11 @@
 
 #### **Laboratório 0 - LAB-0**
 
-Nas páginas anteriores, você recriou algumas das exposições e análises
-preliminares dos dados de batismo de Arbuthnot. Sua tarefa consiste
-repetir essas etapas, mas para os registros atuais de nascimento dos
-Estados Unidos.
+###### Nas páginas anteriores, você recriou algumas das exposições e análises preliminares dos dados de batismo de Arbuthnot. Sua tarefa consiste repetir essas etapas, mas para os registros atuais de nascimento dos Estados Unidos.
 
-Carregue os dados atuais com o seguinte comando.
+###### Carregue os dados atuais com o seguinte comando.
 
-\[openinto\] (“<http://www.openintro.org/stat/data/present.R>”)
+    [openinto] ("<http://www.openintro.org/stat/data/present.R>")
 
     source("http://www.openintro.org/stat/data/present.R")
     source("http://www.openintro.org/stat/data/arbuthnot.R")
@@ -67,19 +64,19 @@ Carregue os dados atuais com o seguinte comando.
 
 ##### 1. Quais anos estão incluídos neste conjunto de dados? Quais são as dimensões da base de dados e quais são os nomes das colunas ou variáveis?
 
-Total de anos no dataset:
+###### Total de anos no dataset:
 
     n_distinct(present$year)
 
     ## [1] 63
 
-Dimensões do dataset (linhas e colunas):
+###### Dimensões do dataset (linhas e colunas):
 
     dim(present)
 
     ## [1] 63  3
 
-Variáveis independentes do dataset:
+###### Variáveis independentes do dataset:
 
     names(present)
 
