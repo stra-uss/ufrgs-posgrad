@@ -78,24 +78,62 @@ Teste de suposição de normalidade
 
 ![](ufrgs-estatistica-strauss-lab01_files/figure-markdown_strict/unnamed-chunk-6-1.png)
 
-1.  Vamos considerar uma nova variável: a diferença entre o peso
-    desejado (wtdesire) e o peso atual (weight). Crie esta nova variável
-    subtraindo as duas colunas na base de dados e atribuindo-as a um
-    novo objeto chamado wdiff.
+##### 2. Vamos considerar uma nova variável: a diferença entre o peso desejado (wtdesire) e o peso atual (weight). Crie esta nova variável subtraindo as duas colunas na base de dados e atribuindo-as a um novo objeto chamado wdiff.
 
-2.  Que tipo de dado está contido na variável wdiff? Se uma observação
-    de wdiff é 0, o que isso implica com relação ao peso atual e
-    desejado de uma pessoas? E se o valor de wdiff for positivo ou
-    negativo?
+    cdc$wdiff = (cdc$wtdesire - cdc$weight) *  0.453592 
+    ggplot(cdc) + geom_point(mapping = aes(x = age, y = wdiff) , color="blue") + ggtitle("Peso desejado - Peso real * idade") 
 
-3.  Descreva a distribuição de wdiff em termos de seu centro, forma e
-    variação, incluindo qualquer gráfico que você usar. O que isso nos
-    diz sobre como as pessoas se sentem a respeito do seu peso atual?
+![](ufrgs-estatistica-strauss-lab01_files/figure-markdown_strict/unnamed-chunk-7-1.png)
 
-4.  Utilizando sumários numéricos e um gráfico de caixas lado-a-lado,
-    determine se homens tendem a ver seu peso diferentemente das
-    mulheres.
+##### 3. Que tipo de dado está contido na variável wdiff? Se uma observação de wdiff é 0, o que isso implica com relação ao peso atual e desejado de uma pessoas? E se o valor de wdiff for positivo ou negativo?
 
-5.  Agora chegou a hora de usar a criatividade. Encontre a média e o
-    desvio padrão de weight e determine qual a proporção de pesos que
-    estão a um desvio padrão da média.
+    head(cdc$wdiff, 5)
+
+    ## [1]  0.000000 -4.535920  0.000000 -3.628736 -9.071840
+
+    typeof(cdc$wdiff)
+
+    ## [1] "double"
+
+Se wdiff = 0 então a meta de peso ideal estipulada foi alcançada - peso
+ideal melhor caso Se wdiff &lt; 0 então, tende a sobrepeso Se wdiff &gt;
+0 então, tende a subpeso
+
+##### 4. Descreva a distribuição de wdiff em termos de seu centro, forma e variação, incluindo qualquer gráfico que você usar. O que isso nos diz sobre como as pessoas se sentem a respeito do seu peso atual?
+
+Curiosamente, conforme gráfico a seguir, a distribuição se concentra em
+indivíduos que estão satisfeitos com seu atual peso, tendendo a valores
+de pesos com menores graus desobrepeso.
+
+    w_wdiff = histogram(cdc$wdiff)
+
+![](ufrgs-estatistica-strauss-lab01_files/figure-markdown_strict/unnamed-chunk-10-1.png)
+
+##### 5. Utilizando sumários numéricos e um gráfico de caixas lado-a-lado, determine se homens tendem a ver seu peso diferentemente das mulheres.
+
+Como observado no gráfico a seguir, complementando pela idade,
+observa-se que os homens estão mais distantes da linha Zero, ou seja, o
+peso idealizado.
+
+    ggplot(cdc, mapping = aes(x=age, y=wdiff, fill=gender)) +
+      geom_col()
+
+![](ufrgs-estatistica-strauss-lab01_files/figure-markdown_strict/unnamed-chunk-11-1.png)
+
+    boxplot(cdc$wdiff ~ cdc$gender)
+
+![](ufrgs-estatistica-strauss-lab01_files/figure-markdown_strict/unnamed-chunk-12-1.png)
+
+##### 6. Agora chegou a hora de usar a criatividade. Encontre a média e o desvio padrão de weight e determine qual a proporção de pesos que estão a um desvio padrão da média.
+
+    mean(cdc$weight)
+
+    ## [1] 169.683
+
+    sd(cdc$weight)
+
+    ## [1] 40.08097
+
+    w = histogram(cdc$weight)
+
+![](ufrgs-estatistica-strauss-lab01_files/figure-markdown_strict/unnamed-chunk-15-1.png)
