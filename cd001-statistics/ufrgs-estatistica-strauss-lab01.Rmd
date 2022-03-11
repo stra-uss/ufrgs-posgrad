@@ -100,9 +100,15 @@ typeof(cdc$wdiff)
 
 ###### *Covariável wdiff - Descrição*
 
-Se wdiff = 0 então a meta de peso ideal estipulada foi alcançada - peso ideal melhor caso Se wdiff \< 0 então, tende a sobrepeso Se wdiff \> 0 então, tende a subpeso
+*Se wdiff = 0 então a meta de peso ideal estipulada foi alcançada - peso ideal melhor caso* 
+<br>
 
-<br> <br>
+*Se wdiff \< 0 então, tende a sobrepeso* 
+<br>
+
+*Se wdiff \> 0 então, tende a subpeso*
+<br> 
+<br>
 
 ##### **4. Descreva a distribuição de wdiff em termos de seu centro, forma e variação, incluindo qualquer gráfico que você usar. O que isso nos diz sobre como as pessoas se sentem a respeito do seu peso atual?**
 
