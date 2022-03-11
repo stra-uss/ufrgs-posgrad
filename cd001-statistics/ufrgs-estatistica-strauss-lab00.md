@@ -1,3 +1,17 @@
+    #install.packages("ggplot2")
+    #install.packages("dplyr")
+    #install.packages("gridExtra")
+    library(ggplot2)
+    library(dplyr, warn.conflicts = FALSE)
+    library("gridExtra")
+
+    ## 
+    ## Attaching package: 'gridExtra'
+
+    ## The following object is masked from 'package:dplyr':
+    ## 
+    ##     combine
+
 <table>
 <tbody>
 <tr class="odd">
@@ -19,7 +33,7 @@
 </tbody>
 </table>
 
-**LAB-00 e LAB-01 - Laboratórios 0 e 1**
+#### **Laboratórios 0 e 1**
 
 Nas páginas anteriores, você recriou algumas das exposições e análises
 preliminares dos dados de batismo de Arbuthnot. Sua tarefa consiste
@@ -31,6 +45,7 @@ Carregue os dados atuais com o seguinte comando.
 \[openinto\] (“<http://www.openintro.org/stat/data/present.R>”)
 
     source("http://www.openintro.org/stat/data/present.R")
+    source("http://www.openintro.org/stat/data/arbuthnot.R")
 
     str(present)
 
@@ -48,62 +63,37 @@ Carregue os dados atuais com o seguinte comando.
     ## 4 1943 1508959 1427901
     ## 5 1944 1435301 1359499
 
-    #install.packages("ggplot2")
-    #install.packages("dplyr")
-    #install.packages("gridExtra")
-    library(ggplot2)
-    library(dplyr, warn.conflicts = FALSE)
-    library("gridExtra")
+#### **Lab-00**
 
-    ## 
-    ## Attaching package: 'gridExtra'
+##### 1. Quais anos estão incluídos neste conjunto de dados? Quais são as dimensões da base de dados e quais são os nomes das colunas ou variáveis?
 
-    ## The following object is masked from 'package:dplyr':
-    ## 
-    ##     combine
+Total de anos no dataset:
 
-**LAB-00 - Laboratório 0**
+    n_distinct(present$year)
 
-1\. Quais anos estão incluídos neste conjunto de dados? Quais são as
-dimensões da base de dados e quais são os nomes das colunas ou
-variáveis?
+    ## [1] 63
 
-    print('Anos agrupados:')
-
-    ## [1] "Anos agrupados:"
-
-    unique(present$year)
-
-    ##  [1] 1940 1941 1942 1943 1944 1945 1946 1947 1948 1949 1950 1951 1952 1953 1954
-    ## [16] 1955 1956 1957 1958 1959 1960 1961 1962 1963 1964 1965 1966 1967 1968 1969
-    ## [31] 1970 1971 1972 1973 1974 1975 1976 1977 1978 1979 1980 1981 1982 1983 1984
-    ## [46] 1985 1986 1987 1988 1989 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999
-    ## [61] 2000 2001 2002
-
-    print('Variáveis independentes do dataset:')
-
-    ## [1] "Variáveis independentes do dataset:"
-
-    names(present)
-
-    ## [1] "year"  "boys"  "girls"
-
-    print('Dimensão do dataset:')
-
-    ## [1] "Dimensão do dataset:"
+Dimensões do dataset (linhas e colunas):
 
     dim(present)
 
     ## [1] 63  3
 
-1.  Como estas contagens se comparam aos dados de Arbuthnot? Eles estão
-    numa escala similar?
+Variáveis independentes do dataset:
 
-<!-- -->
+    names(present)
 
-    n_distinct(present$year)
+    ## [1] "year"  "boys"  "girls"
 
-    ## [1] 63
+#### 2. Como estas contagens se comparam aos dados de Arbuthnot? Eles estão numa escala similar?
+
+    plt_girls_arbuthnot = ggplot(arbuthnot) + geom_point(mapping = aes(x = year, y = girls) , color="red") + ggtitle("Arbuthnot") 
+    plt_guys_arbuthnot = ggplot(arbuthnot) + geom_point(mapping = aes(x = year, y = boys), color='darkblue') + ggtitle("Arbuthnot")
+    plt_girls_present = ggplot(present) + geom_point(mapping = aes(x = year, y = girls), color="red") + ggtitle("Present")
+    plt_guys_present = ggplot(present) + geom_point(mapping = aes(x = year, y = boys), color="darkblue") + ggtitle("Present")
+    grid.arrange(plt_girls_arbuthnot, plt_girls_present, plt_guys_arbuthnot, plt_guys_present, nrow=2, ncol=2)
+
+![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-8-1.png)
 
     ggplot(present, aes(year)) + 
       geom_line(aes(y = girls, colour = "girls")) + 
@@ -111,15 +101,15 @@ variáveis?
       ggtitle("Nascimentos nos Estados Unidos de 1940 a 2000") +
       xlab("Ano") + ylab("Nascimentos")
 
-![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-7-1.png)
+![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-9-1.png)
 
     ggplot(present) + geom_point(mapping = aes(x = year, y = girls), size=0.5)
 
-![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-10-1.png)
+![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-12-1.png)
 
     ggplot(present) + geom_point(mapping = aes(x = year, y = boys), size=0.5)
 
-![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-11-1.png)
+![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-13-1.png)
 
     #plt_boys  = ggplot(present) + geom_point(mapping = aes(x = year, y = boys)) 
     #grid.arrange(plt_girls, plt_boys, nrow=1, ncol=2)
@@ -129,7 +119,7 @@ variáveis?
       ggplot() +
       geom_point(aes(x = year, y = childs, color = childs))
 
-![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-13-1.png)
+![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-15-1.png)
 
 1.  A observação de Arbuthnot de que os meninos nascem numa proporção
     maior que as meninas se mantém nos EUA
