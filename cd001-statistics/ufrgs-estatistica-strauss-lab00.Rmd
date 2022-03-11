@@ -4,13 +4,14 @@ title: "UFRGS - Especialização em Ciência de Dados SERPRO - INF/UFRGS (2022-2
 output: html_document
 ---
 
-|             |                        |
-|-------------|------------------------|
-| Disciplina  | CD001-Estatística      |
-| Professora  | Lisiane Selau          |
-| Aluno       | Strauss Cunha Carvalho |
-| Labarotório | LAB-00                 |
-| Data        | 10/03/2022             |
+|                 |                        |
+|-----------------|------------------------|
+| **Disciplina**  |  CD001-Estatística     |
+| **Professora**  |  Lisiane Selau         |
+| **Aluno**       |  Strauss Cunha Carvalho|
+| **Labarotório** |  LAB-00                |
+| **Data**        |  10/03/2022            |
+
 <br>
 
 ```{r}
