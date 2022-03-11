@@ -1,10 +1,3 @@
-    #install.packages("ggplot2")
-    #install.packages("dplyr")
-    #install.packages("gridExtra")
-    library(ggplot2)
-    library(dplyr, warn.conflicts = FALSE)
-    library("gridExtra", warn.conflicts = FALSE)
-
 <table>
 <tbody>
 <tr class="odd">
@@ -25,6 +18,13 @@
 </tr>
 </tbody>
 </table>
+
+    #install.packages("ggplot2")
+    #install.packages("dplyr")
+    #install.packages("gridExtra")
+    library(ggplot2)
+    library(dplyr, warn.conflicts = FALSE)
+    library("gridExtra", warn.conflicts = FALSE)
 
 #### **LAB 0** - Tarefas do Laboratório
 

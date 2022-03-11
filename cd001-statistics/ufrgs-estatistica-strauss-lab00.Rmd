@@ -3,6 +3,13 @@ title: "UFRGS - Especialização em Ciência de Dados SERPRO - INF/UFRGS (2022-2
 output: md_document
 ---
 
+|            |                        |
+|------------|------------------------|
+| Disciplina | CD001-Estatística      |
+| Professora | Lisiane Selau          |
+| Aluno      | Strauss Cunha Carvalho |
+| Data       | 10/03/2022             |
+
 ```{r}
 #install.packages("ggplot2")
 #install.packages("dplyr")
@@ -12,14 +19,7 @@ library(dplyr, warn.conflicts = FALSE)
 library("gridExtra", warn.conflicts = FALSE)
 ```
 
-|            |                        |
-|------------|------------------------|
-| Disciplina | CD001-Estatística      |
-| Professora | Lisiane Selau          |
-| Aluno      | Strauss Cunha Carvalho |
-| Data       | 10/03/2022             |
-
-#### **LAB 0** - Tarefas do Laboratório
+#### **LAB 0** - Tarefas do Laboratório 0
 
 ###### Nas páginas anteriores, você recriou algumas das exposições e análises preliminares dos dados de batismo de Arbuthnot. Sua tarefa consiste repetir essas etapas, mas para os registros atuais de nascimento dos Estados Unidos.
 
