@@ -90,15 +90,11 @@ w_wdiff = histogram(cdc$wdiff)
 
 ##### 5.  Utilizando sumários numéricos e um gráfico de caixas lado-a-lado, determine se homens tendem a ver seu peso diferentemente das mulheres.
 
-Como observado no gráfico a seguir, complementando pela idade, observa-se que os homens estão mais distantes da linha Zero, ou seja, o peso idealizado.
+Como observado no gráfico box plot a seguir, observa-se que os homens estão mais distantes da linha Zero, ou seja, o peso idealizado.
 
 ```{r}
-ggplot(cdc, mapping = aes(x=age, y=wdiff, fill=gender)) +
-  geom_col()
-```
-```{r}
-boxplot(cdc$wdiff ~ cdc$gender)
-
+ggplot(cdc, mapping=aes(x=gender, y=wdiff, color=gender))+geom_boxplot()+geom_boxplot(outlier.color = "red")+ xlab("Gênero") + 
+  ylab("Diferença entre peso desejado e peso real")+coord_flip(xlim=c(0, 2))
 ```
 
 

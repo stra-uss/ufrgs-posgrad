@@ -111,18 +111,13 @@ de pesos com menores graus desobrepeso.
 
 ##### 5. Utilizando sumários numéricos e um gráfico de caixas lado-a-lado, determine se homens tendem a ver seu peso diferentemente das mulheres.
 
-Como observado no gráfico a seguir, complementando pela idade,
-observa-se que os homens estão mais distantes da linha Zero, ou seja, o
-peso idealizado.
+Como observado no gráfico box plot a seguir, observa-se que os homens
+estão mais distantes da linha Zero, ou seja, o peso idealizado.
 
-    ggplot(cdc, mapping = aes(x=age, y=wdiff, fill=gender)) +
-      geom_col()
+    ggplot(cdc, mapping=aes(x=gender, y=wdiff, color=gender))+geom_boxplot()+geom_boxplot(outlier.color = "red")+ xlab("Gênero") + 
+      ylab("Diferença entre peso desejado e peso real")+coord_flip(xlim=c(0, 2))
 
 ![](ufrgs-estatistica-strauss-lab01_files/figure-markdown_strict/unnamed-chunk-11-1.png)
-
-    boxplot(cdc$wdiff ~ cdc$gender)
-
-![](ufrgs-estatistica-strauss-lab01_files/figure-markdown_strict/unnamed-chunk-12-1.png)
 
 ##### 6. Agora chegou a hora de usar a criatividade. Encontre a média e o desvio padrão de weight e determine qual a proporção de pesos que estão a um desvio padrão da média.
 
@@ -136,4 +131,4 @@ peso idealizado.
 
     w = histogram(cdc$weight)
 
-![](ufrgs-estatistica-strauss-lab01_files/figure-markdown_strict/unnamed-chunk-15-1.png)
+![](ufrgs-estatistica-strauss-lab01_files/figure-markdown_strict/unnamed-chunk-14-1.png)
