@@ -138,10 +138,8 @@ para cada ano do conjunto de dados. O que você pode verificar?**
     grid.arrange(boys_per_girls, girls_per_boys, nrow=1, ncol=2)
 
 ![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-10-1.png)
-\###### **5. Em qual ano se verifica o maior número de nascimentos nos
-EUA? Você pode utilizar os arquivos de ajuda ou o cartão de referência
-do R (<http://cran.r-project.org/doc/contrib/Short-refcard.pdf> ) para
-encontrar comandos úteis.**
+
+###### **5. Em qual ano se verifica o maior número de nascimentos nos EUA? Você pode utilizar os arquivos de ajuda ou o cartão de referência do R (<http://cran.r-project.org/doc/contrib/Short-refcard.pdf> ) para encontrar comandos úteis.**
 
     present %>%
       mutate(borns = present$boys+present$girls) %>% 

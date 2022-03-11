@@ -114,6 +114,7 @@ girls_per_boys = present %>%
 
 grid.arrange(boys_per_girls, girls_per_boys, nrow=1, ncol=2)
 ```
+
 ###### __5. Em qual ano se verifica o maior número de nascimentos nos EUA? Você pode utilizar os arquivos de ajuda ou o cartão de referência do R (<http://cran.r-project.org/doc/contrib/Short-refcard.pdf> ) para encontrar comandos úteis.__
 ```{r}
 present %>%
