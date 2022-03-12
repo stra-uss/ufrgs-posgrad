@@ -1,9 +1,9 @@
 ---
 title: "UFRGS - Especialização em Ciência de Dados SERPRO - INF/UFRGS (2022-2023)"
-#output: md_document
-output: 
-  html_document:
-    code_folding: hide
+output: md_document
+#output: 
+#  html_document:
+#    code_folding: hide
 ---
 
 |                 |                        |
@@ -50,9 +50,13 @@ library("gridExtra", warn.conflicts = FALSE)
 ##### __1. Quais anos estão incluídos neste conjunto de dados? Quais são as dimensões da base de dados e quais são os nomes das colunas ou variáveis?__
 
 - Total de anos no dataset:
+<details>
+  <summary>R Code</summary>
+  
 ```{r}
 n_distinct(present$year)
 ```
+</details>
 
 - Dimensões do dataset (linhas e colunas):
 ```{r}
