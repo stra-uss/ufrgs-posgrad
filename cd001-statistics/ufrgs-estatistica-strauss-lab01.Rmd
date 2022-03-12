@@ -6,15 +6,40 @@ output:
     code_folding: hide
 ---
 
-|                 |                        |
-|-----------------|------------------------|
-| **Disciplina**  |      :CD001-Estatística|
-| **Professora**  |          :Lisiane Selau|
-| **Aluno**       | :Strauss Cunha Carvalho|
-| **Labarotório** |                 :LAB-01|
-| **Data**        |             :11/03/2022|
+|                 |                         |
+|-----------------|-------------------------|
+| **Disciplina**  | :CD001-Estatística      |
+| **Professora**  | :Lisiane Selau          |
+| **Aluno**       | :Strauss Cunha Carvalho |
+| **Labarotório** | :LAB-01                 |
+| **Data**        | :11/03/2022             |
+```{r}
+source("http://www.openintro.org/stat/data/cdc.R")
+```
 
-<br>
+##### **Laboratório 1 - LAB-01**
+
+-   Carregue os dados atuais com o seguinte comando.
+
+``` shell
+[openinto] ("<http://www.openintro.org/stat/data/present.R>")
+```
+
+-   Carregamento dos Datasets
+```{r}
+source("http://www.openintro.org/stat/data/cdc.R")
+```
+
+-   Pré-visualização dos tipos de variáveis dataset
+```{r}
+str(cdc)
+```
+-   Pré-visualização de uma pequena amostra do dataset
+
+```{r}
+head(cdc, 5)
+```
+-   Carregamento (ou instalação de R Packages necessários)
 
 ```{r}
 #install.packages("ggplot2")
@@ -24,28 +49,12 @@ library(ggplot2)
 library(dplyr, warn.conflicts = FALSE)
 library("gridExtra", warn.conflicts = FALSE)
 ```
-
 <br>
 
-#### **LAB-01** - Tarefas do Laboratório 1
-
-###### Carregamento dos Datasets
-
-```{r}
-source("http://www.openintro.org/stat/data/cdc.R")
-```
-
-##### Pré-visualização do Dataset
-
-```{r}
-str(cdc)
-```
-
-#### **LAB-1** - Tarefas
-
-<br>
-
+#### **Tarefas**
 ##### **1. Crie um gráfico de dispersão da variável peso em relação ao peso desejado. Defina a relação entre essas duas variáveis.**
+
+- Criando, para facilitar a visualização dos dados, duas novas variáveis convertidas para o sistema internacional, ou seja, com o peso convertido de libra para quilograma.
 
 ```{r}
 cdc$wr_kg = 0.453592 * cdc$weight
@@ -56,13 +65,13 @@ cdc$wd_kg = 0.453592 * cdc$wtdesire
 ggplot(cdc) + geom_point(mapping = aes(x = wr_kg, y = wd_kg) , color="blue") + ggtitle("Peso real x Peso desejado - Kg") 
 ```
 
-###### *Por meio da correlação de Pearson indica uma forte relação entre peso real e peso desejado.*
+- Por meio da correlação de Pearson indica uma forte relação entre peso real e peso desejado.
 
 ```{r}
 cor(cdc$wr_kg,cdc$wd_kg)
 ```
 
-###### *Teste de suposição de normalidade*
+- Teste de suposição de normalidade
 
 ```{r}
 histogram=function(x){
@@ -79,6 +88,8 @@ w_desired = histogram(cdc$wd_kg)
 
 ##### **2. Vamos considerar uma nova variável: a diferença entre o peso desejado (wtdesire) e o peso atual (weight). Crie esta nova variável subtraindo as duas colunas na base de dados e atribuindo-as a um novo objeto chamado wdiff.**
 
+- Criando a covariável wdiff e convertendo-a de libras para quilogramas
+
 ```{r}
 cdc$wdiff = (cdc$wtdesire - cdc$weight) *  0.453592 
 ggplot(cdc) + geom_point(mapping = aes(x = age, y = wdiff) , color="blue") + ggtitle("Peso desejado (Kg) - Peso real (Kg) * idade") 
@@ -88,33 +99,31 @@ ggplot(cdc) + geom_point(mapping = aes(x = age, y = wdiff) , color="blue") + ggt
 
 ##### **3. Que tipo de dado está contido na variável wdiff? Se uma observação de wdiff é 0, o que isso implica com relação ao peso atual e desejado de uma pessoas? E se o valor de wdiff for positivo ou negativo?**
 
-###### *Visualização dos 5 primeiros valores ca covariável wdiif*
+- Visualização dos 5 primeiros valores ca covariável wdiif
 
 ```{r}
 head(cdc$wdiff, 5)
 ```
 
-###### *Tipo da covariável wdiff*
+- Tipo da covariável wdiff
 
 ```{r}
 typeof(cdc$wdiff)
 ```
 
-###### *Covariável wdiff - Descrição*
+- Covariável wdiff - Descrição*
 
-*Se wdiff = 0 então a meta de peso ideal estipulada foi alcançada - peso ideal melhor caso* 
-<br>
+  - Se wdiff = 0 então a meta de peso ideal estipulada foi alcançada - peso ideal melhor caso
 
-*Se wdiff \< 0 então, tende a sobrepeso* 
-<br>
+  - Se wdiff \< 0 então, tende a sobrepeso
 
-*Se wdiff \> 0 então, tende a subpeso*
+  - Se wdiff \> 0 então, tende a subpeso
 <br> 
 <br>
 
 ##### **4. Descreva a distribuição de wdiff em termos de seu centro, forma e variação, incluindo qualquer gráfico que você usar. O que isso nos diz sobre como as pessoas se sentem a respeito do seu peso atual?**
 
-###### *Curiosamente, conforme gráfico a seguir, a distribuição se concentra em indivíduos que estão satisfeitos com seu atual peso, tendendo a valores de pesos com menores graus desobrepeso.*
+- Curiosamente, conforme gráfico a seguir, a distribuição se concentra em indivíduos que estão satisfeitos com seu atual peso, tendendo a valores de pesos com menores graus desobrepeso.*
 
 ```{r}
 w_wdiff = histogram(cdc$wdiff)
@@ -124,7 +133,7 @@ w_wdiff = histogram(cdc$wdiff)
 
 ##### **5. Utilizando sumários numéricos e um gráfico de caixas lado-a-lado, determine se homens tendem a ver seu peso diferentemente das mulheres.**
 
-###### *Como observado nos gráficos box plots a seguir, observa-se, no gráfico das mulheres (F), a mediana e o primeiro quartil mais afastados de Zero, se comparado aos homens, ou seja, indicando maior sobrepeso. Já no gráfico dos homens (M), contraditoriamente, a mediana se aproxima mais do zero. Entretanto, se observam mais outlier para valores acima de zero, o que pode ser um indício de indicativo de que homens se imaginam com mais sobrepeso do que, de fato, estão.*
+- Como observado nos gráficos box plots a seguir, observa-se, no gráfico das mulheres (F), a mediana e o primeiro quartil mais afastados de Zero, se comparado aos homens, ou seja, indicando maior sobrepeso. Já no gráfico dos homens (M), contraditoriamente, a mediana se aproxima mais do zero. Entretanto, se observam mais outlier para valores acima de zero, o que pode ser um indício de indicativo de que homens se imaginam com mais sobrepeso do que, de fato, estão.
 
 ```{r}
 ggplot(cdc, mapping=aes(x=gender, y=wdiff, color=gender))+geom_boxplot()+geom_boxplot(outlier.color = "red")+ xlab("Gênero") + 
@@ -135,19 +144,19 @@ ggplot(cdc, mapping=aes(x=gender, y=wdiff, color=gender))+geom_boxplot()+geom_bo
 
 ##### **6. Agora chegou a hora de usar a criatividade. Encontre a média e o desvio padrão de weight e determine qual a proporção de pesos que estão a um desvio padrão da média.**
 
-###### *Média do peso (em Kg)*
+- Média do peso (em Kg)
 
 ```{r}
 mean(cdc$weight) *  0.453592 
 ```
 
-###### *Desvio Padrão*
+- Desvio Padrão
 
 ```{r}
 sd(cdc$weight) 
 ```
 
-###### *Análise da normalidade dos pesos no dataset*
+- Análise da normalidade dos pesos no dataset
 
 ```{r}
 w = histogram(cdc$weight)

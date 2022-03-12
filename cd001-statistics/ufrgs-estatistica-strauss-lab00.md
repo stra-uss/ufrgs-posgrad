@@ -83,16 +83,12 @@
 
 -   Total de anos no dataset:
 
-<details>
-  <summary>r code</summary>
-  
-  ```r
+<!-- -->
+
     n_distinct(present$year)
-  ```
-</details>    
 
     ## [1] 63
-    
+
 -   Dimensões do dataset (linhas e colunas):
 
 <!-- -->
