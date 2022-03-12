@@ -82,19 +82,17 @@
 ##### **1. Quais anos estão incluídos neste conjunto de dados? Quais são as dimensões da base de dados e quais são os nomes das colunas ou variáveis?**
 
 -   Total de anos no dataset:
-    <details>
-    <summary>
-    R Code
-    </summary>
 
-<!-- -->
-
+<details>
+  <summary>r code</summary>
+  
+  ```r
     n_distinct(present$year)
+  ```
+</details>    
 
     ## [1] 63
-
-</details>
-
+    
 -   Dimensões do dataset (linhas e colunas):
 
 <!-- -->
@@ -130,6 +128,7 @@
     grid.arrange(plt_girls_arbuthnot, plt_girls_present, plt_guys_arbuthnot, plt_guys_present, nrow=2, ncol=2)
 
 ![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-8-1.png)
+
 <br> <br>
 
 ##### **3. A observação de Arbuthnot de que os meninos nascem numa proporção maior que as meninas se mantém nos EUA?**
@@ -163,6 +162,7 @@
     grid.arrange(boys_rate_arbuthnot, boys_rate_present, girls_rate_arbuthnot, girls_rate_present,  nrow=2, ncol=2)
 
 ![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-9-1.png)
+
 <br>
 
 -   Complementando, a título de curiosidade, nos dois gráficos a seguir
@@ -183,6 +183,7 @@
     grid.arrange(borns_arbuthnot, borns_present,  nrow=1, ncol=2)
 
 ![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-10-1.png)
+
 <br>
 
 ##### **4. Crie um gráfico que mostre a razão de meninos para meninas para cada ano do conjunto de dados. O que você pode verificar?**
@@ -208,6 +209,7 @@
     grid.arrange(boys_per_girls, girls_per_boys, nrow=1, ncol=2)
 
 ![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-11-1.png)
+
 <br>
 
 ##### **5. Em qual ano se verifica o maior número de nascimentos nos EUA?**
@@ -231,6 +233,7 @@
       geom_point(aes(x = year, y = borns, color = borns)) + ggtitle("Borns")
 
 ![](ufrgs-estatistica-strauss-lab00_files/figure-markdown_strict/unnamed-chunk-12-1.png)
+
 <br>
 
 -   Pico de nascimentos por ano:
