@@ -14,6 +14,13 @@ output:
 | **Labarotório** | :LAB-00                 |
 | **Data**        | :11/03/2022             |
 
+
+##### __Github do Laboratório 00 - Markdown__
+- [Github] (https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab00.md)
+
+<br>
+<br>
+
 ##### **Laboratório 0 - LAB-00**
 
 ##### Nas páginas anteriores, você recriou algumas das exposições e análises preliminares dos dados de batismo de Arbuthnot. Sua tarefa consiste repetir essas etapas, mas para os registros atuais de nascimento dos Estados Unidos.

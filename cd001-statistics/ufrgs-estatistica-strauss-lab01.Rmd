@@ -13,9 +13,12 @@ output:
 | **Aluno**       | :Strauss Cunha Carvalho |
 | **Labarotório** | :LAB-01                 |
 | **Data**        | :11/03/2022             |
-```{r}
-source("http://www.openintro.org/stat/data/cdc.R")
-```
+
+##### __Github do Laboratório 01 - Markdown__
+- [Github] (https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab01.md)
+
+<br>
+<br>
 
 ##### **Laboratório 1 - LAB-01**
 
