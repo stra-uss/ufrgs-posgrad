@@ -12,7 +12,6 @@ output: html_document
 | **Labarotório** |                 :LAB-02|
 | **Data**        |             :12/03/2022|
 
-
 <br>
 
 ```{r}
