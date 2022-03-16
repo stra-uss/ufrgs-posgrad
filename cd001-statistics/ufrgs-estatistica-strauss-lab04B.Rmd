@@ -1,0 +1,23 @@
+---
+title: "UFRGS - Especialização em Ciência de Dados SERPRO - INF/UFRGS (2022-2023)"
+#output: md_document
+output: 
+  html_document:
+    code_folding: hide
+---
+
+|                 |                         |
+|-----------------|-------------------------|
+| **Disciplina**  | :CD001-Estatística      |
+| **Professora**  | :Lisiane Selau          |
+| **Aluno**       | :Strauss Cunha Carvalho |
+| **Labarotório** | :LAB-04                 |
+| **Data**        | :16/03/2022             |
+
+##### __Github do Laboratório 04B - Markdown__
+- [Github] (https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab04b.md)
+
+<br>
+<br>
+
+##### **Laboratório 4B - LAB-04B**

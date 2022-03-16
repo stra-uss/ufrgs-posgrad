@@ -14,13 +14,13 @@ output:
 | **Labarotório** | :LAB-02                 |
 | **Data**        | :14/03/2022             |
 
-##### __Github do Laboratório 01 - Markdown__
-- [Github] (https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab01.md)
+##### __Github do Laboratório 02 - Markdown__
+- [Github] (https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab02.md)
 
 <br>
 <br>
 
-##### **Laboratório 1 - LAB-01**
+##### **Laboratório 2 - LAB-02**
 
 -   Carregue os dados atuais com o seguinte comando.
 
@@ -66,3 +66,58 @@ library("gridExtra", warn.conflicts = FALSE)
 <br>
 
 ##### **3. Como a distribuição dos comprimentos de sequência de Kobe Bryant, analisada na página 2, se comparam à distribuição de comprimentos de sequência do arremessador simulado? Utilizando essa comparação, você tem evidência de que o modelo das mãos quentes se ajusta aos padrões de arremessos de Kobe? Explique.**
+
+
+
+
+```{r}
+download.file("http://www.openintro.org/stat/data/ames.RData", destfile = "ames.RData")
+load("ames.RData")
+```
+
+
+```{r}
+population <- ames$Gr.Liv.Area
+samp <- sample(population, 60)
+```
+
+
+
+```{r}
+sample_mean <- mean(samp)
+sample_mean
+```
+
+
+```{r}
+se <- sd(samp)/sqrt(60)
+lower <- sample_mean - 1.96 * se
+upper <- sample_mean + 1.96 * se
+c(lower, upper)
+```
+
+```{r}
+n = 60
+samp_mean <- rep(NA, 50)
+samp_sd <- rep(NA, 50)
+for(i in 1:50){
+samp <- sample(population, n) # obtém uma amostra de n = 60 elementos da população
+samp_mean[i] <- mean(samp) # salva a média amostral no i-ésimo elemento de samp_mean
+samp_sd[i] <- sd(samp) # salva o dp da amostra como o i-ésimo elemento de samp_sd
+}
+```
+
+```{r}
+lower_vector <- samp_mean - 1.96 * samp_sd / sqrt(n)
+upper_vector <- samp_mean + 1.96 * samp_sd / sqrt(n)
+```
+
+
+```{r}
+c(lower_vector[1],upper_vector[1])
+```
+
+```{r}
+plot_ci(lower_vector, upper_vector, mean(population))
+```
+

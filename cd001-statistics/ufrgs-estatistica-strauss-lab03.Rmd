@@ -14,13 +14,13 @@ output:
 | **Labarotório** | :LAB-03                 |
 | **Data**        | :15/03/2022             |
 
-##### __Github do Laboratório 01 - Markdown__
-- [Github] (https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab01.md)
+##### __Github do Laboratório 03 - Markdown__
+- [Github] (https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab03.md)
 
 <br>
 <br>
 
-##### **Laboratório 1 - LAB-01**
+##### **Laboratório 3 - LAB-03**
 
 -   Carregue os dados atuais com o seguinte comando.
 

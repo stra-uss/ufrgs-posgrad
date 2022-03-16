@@ -14,12 +14,11 @@ output:
 | **Labarotório** | :LAB-00                 |
 | **Data**        | :11/03/2022             |
 
+##### **Github do Laboratório 00 - Markdown**
 
-##### __Github do Laboratório 00 - Markdown__
-- [Github] (https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab00.md)
+-   [Github] (<https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab00.md>)
 
-<br>
-<br>
+<br> <br>
 
 ##### **Laboratório 0 - LAB-00**
 
@@ -90,11 +89,10 @@ names(present)
 ##### **2. Como estas contagens se comparam aos dados de Arbuthnot? Eles estão numa escala similar?**
 
 -   Conforme gráficos a seguir, observa-se, no estudo de Arbuthnot, a partir do ano de 1660, um aumento na quantidade de batismos e, consequentemente, nascimentos.
--   Posteriormente, no período de 1940 a 2000, baseando-se no dataset de nascimento nos Estados Unidos, visualmente, observa-se, no período de 1940 a 1960, a mesma tendência de aumento, porém numa escala maior. 
-- Entretanto, observa-se, no início da década de 1960 um significativo decaimento da curva de nascimento. 
-- Curiosamente, a título de informação, conforme [1] (<https://www.dw.com/pt-br/1960-primeira-p%C3%ADlula-anticoncepcional-chega-ao-mercado/a-611248#>), o anticoncepcional fora colocado em uso à população estadunidense em 1960, ou seja, um ano antes do pico de nascimentos naquele país do norte. Viva a ciência!
-- A partir da primeira metade da década de 1970 voltou a ter um aumento nos nascimentos, atingindo, em 1990, um valor de máximo local. Posteriormente, voltou a decair e oscilar até o ano 2000.
-
+-   Posteriormente, no período de 1940 a 2000, baseando-se no dataset de nascimento nos Estados Unidos, visualmente, observa-se, no período de 1940 a 1960, a mesma tendência de aumento, porém numa escala maior.
+-   Entretanto, observa-se, no início da década de 1960 um significativo decaimento da curva de nascimento.
+-   Curiosamente, a título de informação, conforme [1] (<https://www.dw.com/pt-br/1960-primeira-p%C3%ADlula-anticoncepcional-chega-ao-mercado/a-611248#>), o anticoncepcional fora colocado em uso à população estadunidense em 1960, ou seja, um ano antes do pico de nascimentos naquele país do norte. Viva a ciência!
+-   A partir da primeira metade da década de 1970 voltou a ter um aumento nos nascimentos, atingindo, em 1990, um valor de máximo local. Posteriormente, voltou a decair e oscilar até o ano 2000.
 
 ```{r}
 plt_girls_arbuthnot = ggplot(arbuthnot) + geom_point(mapping = aes(x = year, y = girls) , color="red") + ggtitle("Arbuthnot") 
@@ -177,8 +175,8 @@ grid.arrange(boys_per_girls, girls_per_boys, nrow=1, ncol=2)
 
 ###### Você pode utilizar os arquivos de ajuda ou o cartão de referência do R (<http://cran.r-project.org/doc/contrib/Short-refcard.pdf> ) para encontrar comandos úteis.
 
-- Como se observa no gráfico a seguir, no ano de 1961, o ponto de máximo absoluto do dataset, foi quando houve o maior número de nascimentos nos EUA. 
-- Logo nos anos seguintes, observa-se um decaimento, como provável explicação, citada em [1].
+-   Como se observa no gráfico a seguir, no ano de 1961, o ponto de máximo absoluto do dataset, foi quando houve o maior número de nascimentos nos EUA.
+-   Logo nos anos seguintes, observa-se um decaimento, como provável explicação, citada em [1].
 
 ```{r}
 present %>%
@@ -204,6 +202,7 @@ present %>%
 ```{r}
 max(present$boys+present$girls)
 ```
+
 <br>
 
 ##### **Referencias**
