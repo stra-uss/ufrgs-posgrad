@@ -156,8 +156,8 @@ barplot(table(jogador_indep_basket_s2), main="Simulação 02 - Jogador Independe
 ##### **4. Quais conceitos do livro são abordados neste laboratório? Quais conceitos, se houver algum, que não são abordados no livro? Você viu esses conceito em algum outro lugar, p.e., aulas, seções de discussão, laboratórios anteriores, ou tarefas de casa? Seja específico em sua resposta.**\*
 
 -   Foram abordados os conceitos introdutórios de Probabilidade e Distribuição de Variáveis Aleatórias.
--   O livro contém uma estrutua didática na qual evolui, passo a passo, para o entendimento dos úteis e necessários conceitos e técnicas estatíscas para nao estatísticos.
--   Na área de exatas, no que se refere à engenharia, a estatística sempre está presente. No âmbito da análise de dados, seu uso é essencial. Sem estatítica não há ciência.
+-   O livro contém uma estrutua didática na qual evolui, passo a passo, para o entendimento dos úteis e necessários conceitos e técnicas estatísticas para não estatísticos.
+-   Na área de exatas, no que se refere à engenharia, a estatística sempre está presente. No âmbito da análise de dados, seu uso é essencial. Sem estatística, não há ciência.
 -   Apesar de toda sua importância, no entanto, o que se observa, quanto à aplicabilidade por não estatísticos ou não matemáticos ou não cientistas, é um certo negligenciamento ou imcompreensão. Ah, como seria ótimo se a humanidade submetesse suas loucas hipóteses a testes estatísticos.
 
 ##### **Referências**
