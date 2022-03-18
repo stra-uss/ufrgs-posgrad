@@ -18,8 +18,6 @@ output:
 
 -   [Github] (<https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab01.md>)
 
-<br> <br>
-
 ##### **Laboratório 1 - LAB-01**
 
 -   Carregue os dados atuais com o seguinte comando.

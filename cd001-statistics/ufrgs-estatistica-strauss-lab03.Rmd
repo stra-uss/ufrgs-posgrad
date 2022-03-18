@@ -12,36 +12,14 @@ output:
 | **Professora**  | :Lisiane Selau          |
 | **Aluno**       | :Strauss Cunha Carvalho |
 | **Labarotório** | :LAB-03                 |
-| **Data**        | :15/03/2022             |
+| **Data**        | :18/03/2022             |
 
-##### __Github do Laboratório 03 - Markdown__
-- [Github] (https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab03.md)
+##### **Github do Laboratório 03 - Markdown**
 
-<br>
-<br>
+-   [Github] (<https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab03.md>)
 
 ##### **Laboratório 3 - LAB-03**
 
--   Carregue os dados atuais com o seguinte comando.
-
-``` shell
-[openinto] ("<http://www.openintro.org/stat/data/present.R>")
-```
-
--   Carregamento dos Datasets
-```{r}
-source("http://www.openintro.org/stat/data/cdc.R")
-```
-
--   Pré-visualização dos tipos de variáveis dataset
-```{r}
-str(cdc)
-```
--   Pré-visualização de uma pequena amostra do dataset
-
-```{r}
-head(cdc, 5)
-```
 -   Carregamento (ou instalação de R Packages necessários)
 
 ```{r}
@@ -52,7 +30,25 @@ library(ggplot2)
 library(dplyr, warn.conflicts = FALSE)
 library("gridExtra", warn.conflicts = FALSE)
 ```
-<br>
+
+-   Carregamento dos Datasets
+
+```{r}
+download.file("http://www.openintro.org/stat/data/bdims.RData", destfile = "bdims.RData")
+load("bdims.RData")
+```
+
+-   Pré-visualização dos tipos de variáveis dataset
+
+```{r}
+str(kobe)
+```
+
+-   Pré-visualização de uma pequena amostra do dataset
+
+```{r}
+head(kobe, 5)
+```
 
 #### **Tarefas**
 ##### **1. Agora vamos analisar outras variáveis no conjunto de dados das dimensões corporais. Utilizando as figuras na próxima página, combine os histogramas com seus gráficos de probabilidade normal.**
