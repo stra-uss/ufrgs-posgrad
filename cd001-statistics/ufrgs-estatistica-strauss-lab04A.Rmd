@@ -1,9 +1,9 @@
 ---
 title: "UFRGS - Especialização em Ciência de Dados SERPRO - INF/UFRGS (2022-2023)"
-#output: md_document
-output: 
-  html_document:
-    code_folding: hide
+output: md_document
+#output: 
+#  html_document:
+#    code_folding: hide
 ---
 
 |                 |                         |
@@ -14,10 +14,50 @@ output:
 | **Labarotório** | :LAB-04                 |
 | **Data**        | :16/03/2022             |
 
-##### __Github do Laboratório 04A - Markdown__
-- [Github] (https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab04a.md)
+##### **Github do Laboratório 04A - Markdown**
 
-<br>
-<br>
+-   [Github] (<https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab04a.md>)
 
 ##### **Laboratório 4A - LAB-04A**
+
+-   Carregamento (ou instalação de R Packages necessários)
+
+```{r}
+#install.packages("ggplot2")
+#install.packages("dplyr")
+#install.packages("gridExtra")
+library(ggplot2)
+library(dplyr, warn.conflicts = FALSE)
+library("gridExtra", warn.conflicts = FALSE)
+```
+
+-   Carregamento dos Datasets
+
+```{r}
+download.file("http://www.openintro.org/stat/data/ames.RData", destfile = "ames.RData")
+load("ames.RData")
+```
+
+-   Pré-visualização dos tipos de variáveis dataset
+
+```{r}
+str(ames)
+```
+
+-   Pré-visualização de uma pequena amostra do dataset
+
+```{r}
+head(ames, 5)
+```
+
+#### **Tarefas**
+
+##### Até agora, nós nos ocupamos em estimar a média da área habitável nas casas do município de Ames. Agora você tentará estimar a média dos preços das casas.
+
+##### 1. Retire uma amostra aleatória de 50 elementos da variável price (preço). Com essa amostra, qual é sua melhor estimativa pontual para a média populacional?
+
+##### 2. Já que você tem acesso à população, simule a distribuição amostral de ¯ xprice retirando 5000 amostras de 50 elementos da população e calculando 5000 médias amostrais. Armazene essas médias em um vetor com o nome sample_means50. Crie um gráfico com os resultados, e então descreva a forma dessa distribuição amostral. Baseado nessa distribuição amostral, qual seria seu palpite para a média dos preços das casas na população? Por fim, calcule e informe a média populacional.
+
+##### 3. Mude o tamanho da sua amostra de 50 para 150, e então calcule a distribuição amostral utilizando o mesmo método descrito acima, e guarde as médias em um novo vetor com o nome sample_means150. Descreva a forma dessa distribuição amostral e compare-a com a distribuição amostral para a amostra de 50 elementos. Com base nessa distribuição amostral, qual seria seu palpite sobre a média dos preços de vendas de casas no município de Ames?
+
+##### 4. Das distribuições amostrais calculadas nos exercícios 2 e 3, qual tem menor dispersão? Se estamos interessados em estimativas que estão mais próximas do valor verdadeiro, preferiríamos uma distribuição com uma dispersão pequena ou grande?

@@ -14,10 +14,48 @@ output:
 | **Labarotório** | :LAB-04                 |
 | **Data**        | :16/03/2022             |
 
-##### __Github do Laboratório 04B - Markdown__
-- [Github] (https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab04b.md)
+##### **Github do Laboratório 04B - Markdown**
 
-<br>
-<br>
+-   [Github] (<https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab04b.md>)
 
 ##### **Laboratório 4B - LAB-04B**
+
+-   Carregamento (ou instalação de R Packages necessários)
+
+```{r}
+#install.packages("ggplot2")
+#install.packages("dplyr")
+#install.packages("gridExtra")
+library(ggplot2)
+library(dplyr, warn.conflicts = FALSE)
+library("gridExtra", warn.conflicts = FALSE)
+```
+
+-   Carregamento dos Datasets
+
+```{r}
+download.file("http://www.openintro.org/stat/data/ames.RData", destfile = "ames.RData")
+load("ames.RData")
+```
+
+-   Pré-visualização dos tipos de variáveis dataset
+
+```{r}
+str(ames)
+```
+
+-   Pré-visualização de uma pequena amostra do dataset
+
+```{r}
+head(ames, 5)
+```
+
+#### Tarefas
+
+##### 1. Utilizando a seguinte função (que foi carregada junto com o conjunto de dados), crie gráficos de todos os intervalos. Que proporção dos intervalos de confiança contém a verdadeira média populacional? Essa proporção é exatamente igual ao nível de confiança? Se não, explique por quê.
+
+plot_ci(lower_vector, upper_vector, mean(population))
+
+##### 2. Escolha um intervalo de confiança de sua preferência, desde que não seja de 95%. Qual é o valor crítico apropriado?
+
+##### 3. Calcule 50 intervalos de confiança utilizando o nível de confiança que você escolheu na questão anterior. Você não precisa obter novas amostras: simplesmente calcule os novos intervalos baseado nas médias amostrais e desvios padrão que você já coletou. Utilizando a função plot_ci, crie gráficos de todos os intervalos e calcule a proporção de intervalos que contém a verdadeira média populacional. Compare essa proporção com o nível de confiança escolhido para os intervalos.
