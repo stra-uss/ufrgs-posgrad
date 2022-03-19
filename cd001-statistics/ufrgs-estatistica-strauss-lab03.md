@@ -140,7 +140,7 @@
 
 -   *z*
 
-$$z = \\frac{x - 27,58}{2,307} $$
+$z = $
 
 -   Histograma e Distribuição de Probabilidade
 
