@@ -80,7 +80,7 @@ ss
 
 -   $z$
 
-$$z = \frac{x - 27,58}{2,307} $$
+$z = \frac{x - 27,58}{2,307} $
 
 -   Histograma e Distribuição de Probabilidade
 
