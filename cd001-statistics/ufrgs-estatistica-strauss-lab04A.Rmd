@@ -1,9 +1,9 @@
 ---
 title: "UFRGS - Especialização em Ciência de Dados SERPRO - INF/UFRGS (2022-2023)"
-output: md_document
-#output: 
-#  html_document:
-#    code_folding: hide
+#output: md_document
+output: 
+  html_document:
+    code_folding: hide
 ---
 
 |                 |                         |
@@ -54,10 +54,246 @@ head(ames, 5)
 
 ##### Até agora, nós nos ocupamos em estimar a média da área habitável nas casas do município de Ames. Agora você tentará estimar a média dos preços das casas.
 
+- Criando um subconjunto de dados com a variável preço de venda dos imóveis (SalePrice)
+
+```{r}
+house_price <- ames$SalePrice
+```
+
+- Média populacional do preço de venda dos imóveis
+```{r}
+mean(house_price)
+```
+- Como se viu nos exercícios anteiores em sala de aula, a distribuição de frequência do preço de imóveis, não segue uma distribuição normal, como se observa no gráficos a seguir, supostamente, causada por outliers referentes a imóvels de alto padrão.
+
+
+```{r}
+histogram=function(x){
+  hist(x,prob=T, main="Distribuição de Frequência da População",
+     xlab="Preço de imóveis ($)")
+  lines(density(x),col="red")
+  curve(dnorm(x,mean(x), sd(x)),add=T,col="blue")
+}
+histogram(house_price)
+```
+
 ##### 1. Retire uma amostra aleatória de 50 elementos da variável price (preço). Com essa amostra, qual é sua melhor estimativa pontual para a média populacional?
+
+- A Média de uma amostra não representativa aleatória de 50 elementos, ou seja 1,7% da população é de:
+
+```{r}
+sample_house_price_50 <- sample(house_price, 50)
+mean(sample_house_price_50)
+```
+- A distribuição de frequência para esta amostra de n=50 não representativa, como se observa no gráfico a seguir, a linha vermelha, não segue uma distribuição normal, por sua vez, representada pela linha azul.  
+
+```{r}
+histogram=function(x){
+  hist(x,prob=T, main="Distribuição de Frequência para amostra n=50 (1.7% da população)",
+     xlab="Preço de imóveis ($)")
+  lines(density(x),col="red")
+  curve(dnorm(x,mean(x), sd(x)),add=T,col="blue")
+}
+histogram(sample_house_price_50)
+```
+
+- Média de uma amostra aleatória de 200 elementos não representativa, ou seja 6,8% da população
+```{r}
+sample_house_price_200 <- sample(house_price, 200)
+mean(sample_house_price_200)
+```
+- A distribuição de frequência para esta amostra de n=200 não representativa, como se observa no gráfico a seguir, a linha vermelha, não segue uma distribuição normal, por sua vez, representada pela linha azul.  
+
+```{r}
+histogram=function(x){
+  hist(x,prob=T, main="Distribuição de Frequência para amostra n=200 (6.8% da população)",
+     xlab="Preço de imóveis ($)")
+  lines(density(x),col="red")
+  curve(dnorm(x,mean(x), sd(x)),add=T,col="blue")
+}
+histogram(sample_house_price_200)
+```
 
 ##### 2. Já que você tem acesso à população, simule a distribuição amostral de ¯ xprice retirando 5000 amostras de 50 elementos da população e calculando 5000 médias amostrais. Armazene essas médias em um vetor com o nome sample_means50. Crie um gráfico com os resultados, e então descreva a forma dessa distribuição amostral. Baseado nessa distribuição amostral, qual seria seu palpite para a média dos preços das casas na população? Por fim, calcule e informe a média populacional.
 
+- Cálculo da Média amostral de 5.000 amostras de 50 elementos aleatórios
+
+```{r}
+sample_means50 <- rep(0, 5000)
+for(i in 1:5000){
+  sample_house_price <- sample(house_price, 50)
+  sample_means50[i] <- mean(sample_house_price)
+}
+```
+
+- Média Amostral  (5.000 amostras de 50 elementos) do preço de venda dos imóveis
+
+```{r}
+mean(sample_means50)
+```
+- Média Populacional do preço de venda dos imóveis
+```{r}
+mean(house_price)
+```
+- Por meio do cálculo da média amostral com n=50, como se observa no gráfico a seguir, a distribuição de frequência é representativa e, visualmente, possui uma distribuição normal. 
+
+```{r}
+histogram=function(x){
+  hist(x,prob=T, main="Distribuição da média amostral n = 50",
+     xlab="Preço de imóveis ($)")
+  lines(density(x),col="red")
+  curve(dnorm(x,mean(x), sd(x)),add=T,col="blue")
+}
+histogram(sample_means50)
+```
+- Observa-se portanto, que a média da distribuição amostral, por meio de 5.000 amostras com 50 elementosas se aproximou à média populacional.
+
+
 ##### 3. Mude o tamanho da sua amostra de 50 para 150, e então calcule a distribuição amostral utilizando o mesmo método descrito acima, e guarde as médias em um novo vetor com o nome sample_means150. Descreva a forma dessa distribuição amostral e compare-a com a distribuição amostral para a amostra de 50 elementos. Com base nessa distribuição amostral, qual seria seu palpite sobre a média dos preços de vendas de casas no município de Ames?
 
+- Cálculo da Média amostral de 5.000 amostras de 150 elementos aleatórios
+
+```{r}
+sample_means150 <- rep(0, 5000)
+for(i in 1:5000){
+  sample_house_price <- sample(house_price, 150)
+  sample_means150[i] <- mean(sample_house_price)
+}
+```
+
+- Média Amostral  (5.000 amostras de 150 elementos) do preço de venda dos imóveis
+
+```{r}
+mean(sample_means150)
+```
+ - Para o cálculo da média amostral com n=150, como se observa no gráfico a seguir, a distribuição de frequência é representativa e, visualmente, possui uma distribuição normal.
+ 
+```{r}
+histogram=function(x){
+  hist(x,prob=T, main="Distribuição da média amostral n = 150",
+     xlab="Preço de imóveis ($)")
+  lines(density(x),col="red")
+  curve(dnorm(x,mean(x), sd(x)),add=T,col="blue")
+}
+histogram(sample_means150)
+```
+- Observa-se portanto, que a média da distribuição amostral, por meio de 5.000 amostras com 150 elementosas se aproximou à média populacional.
+
 ##### 4. Das distribuições amostrais calculadas nos exercícios 2 e 3, qual tem menor dispersão? Se estamos interessados em estimativas que estão mais próximas do valor verdadeiro, preferiríamos uma distribuição com uma dispersão pequena ou grande?
+
+- Variância para a distribuição amostral do exercício 02, para n=50:
+```{r}
+var_n50 = var(sample_means50)
+var_n50
+```
+- Desvio Padrão para a distribuição amostral do exercício 02, para n=50:
+```{r}
+std_dev_n50 = sqrt(var_n50)
+std_dev_n50
+```
+- Estatísticas descritivas básicas para a distribuição amostral do exercício 02, para n=50:
+
+```{r}
+summary(sample_means50)
+```
+
+- Variância para a distribuição amostral do exercício 03, para n=150:
+
+```{r}
+var_n150 = var(sample_means150)
+var_n150
+```
+- Desvio Padrão para a distribuição amostral do exercício 03, para n=150:
+
+```{r}
+std_dev_n150 = sqrt(var_n150)
+std_dev_n150
+```
+- Estatísticas descritivas básicas para a distribuição amostral do exercício 03, para n=150:
+
+```{r}
+summary(sample_means150)
+```
+
+- Portanto, as medidas de dispersão é inversamente proporcional ao tamanho da amostra. Ou seja, ela decai ao aumentar o tamanho da amostra, tendendo a estabilizar-se após um determinado ponto, como se observa nos cálculos da variância e do desvio padrão e nos respectivos gráficos a seguir.
+
+- Gerando, para testes, mais duas distribuições amostrais, uma para n=200 e outra para n=300
+
+```{r}
+sample_means200 <- rep(0, 5000)
+for(i in 1:5000){
+  sample_house_price <- sample(house_price, 200)
+  sample_means200[i] <- mean(sample_house_price)
+}
+
+sample_means300 <- rep(0, 5000)
+for(i in 1:5000){
+  sample_house_price <- sample(house_price, 300)
+  sample_means300[i] <- mean(sample_house_price)
+}
+
+sample_means500 <- rep(0, 5000)
+for(i in 1:5000){
+  sample_house_price <- sample(house_price, 500)
+  sample_means500[i] <- mean(sample_house_price)
+}
+```
+
+- Variância para a distribuição amostral de n=200
+
+```{r}
+var_n200 = var(sample_means200)
+var_n200
+```
+
+
+- Desvio Padrão para a distribuição amostral de n=200
+```{r}
+std_dev_n200 = sqrt(var_n200)
+std_dev_n200
+```
+- Variância para a distribuição amostral de n=300
+```{r}
+var_n300 = var(sample_means300)
+var_n300
+```
+- Desvio Padrão para a distribuição amostral de n=300
+```{r}
+std_dev_n300 = sqrt(var_n300)
+std_dev_n300
+```
+- Variância para a distribuição amostral de n=500
+```{r}
+var_n500 = var(sample_means500)
+var_n500
+```
+
+- Desvio Padrão para a distribuição amostral de n=500
+```{r}
+std_dev_n500 = sqrt(var_n500)
+std_dev_n500
+```
+
+```{r}
+n <-c(50,150,200,300,500)
+variancia <- c(var_n50, var_n150, var_n200, var_n300, var_n500)
+desvio_padrao <- c(std_dev_n50, std_dev_n150, std_dev_n200, std_dev_n300, std_dev_n500)
+df_samples <-data.frame(n,variancia, desvio_padrao) 
+```
+
+```{r}
+graph = ggplot(df_samples, aes(n)) + 
+geom_line(aes(y = variancia, colour = "variancia"),  color="blue")  + ylab("Variância") 
+graph
+```
+```{r}
+graph = ggplot(df_samples, aes(n)) + 
+geom_line(aes(y = desvio_padrao, colour = "desvio_padrao"), color="red") + ylab("Desvio Padrão") 
+graph
+```
+
+
+
+
+
+

@@ -54,7 +54,12 @@ head(ames, 5)
 
 ##### 1. Utilizando a seguinte função (que foi carregada junto com o conjunto de dados), crie gráficos de todos os intervalos. Que proporção dos intervalos de confiança contém a verdadeira média populacional? Essa proporção é exatamente igual ao nível de confiança? Se não, explique por quê.
 
+```{r}
 plot_ci(lower_vector, upper_vector, mean(population))
+```
+
+
+
 
 ##### 2. Escolha um intervalo de confiança de sua preferência, desde que não seja de 95%. Qual é o valor crítico apropriado?
 
