@@ -16,7 +16,7 @@ output:
 
 ##### **Github do Laboratório 04B - Markdown**
 
--   [Github] (<https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab04b.md>)
+-   [Github] (<https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab04B.md>)
 
 ##### **Laboratório 4B - LAB-04B**
 
@@ -57,8 +57,6 @@ head(ames, 5)
 ```{r}
 plot_ci(lower_vector, upper_vector, mean(population))
 ```
-
-
 
 
 ##### 2. Escolha um intervalo de confiança de sua preferência, desde que não seja de 95%. Qual é o valor crítico apropriado?
