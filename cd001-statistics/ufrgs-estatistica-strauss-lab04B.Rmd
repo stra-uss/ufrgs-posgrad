@@ -54,11 +54,63 @@ head(ames, 5)
 
 ##### 1. Utilizando a seguinte função (que foi carregada junto com o conjunto de dados), crie gráficos de todos os intervalos. Que proporção dos intervalos de confiança contém a verdadeira média populacional? Essa proporção é exatamente igual ao nível de confiança? Se não, explique por quê.
 
+-   Subconjunto - Variável Dependente SalePrice
+
 ```{r}
-plot_ci(lower_vector, upper_vector, mean(population))
+house_price <- ames$SalePrice
 ```
 
+-   Calculando uma média amostral e um desvio padrão com 200 amostras de 5.000 elementos
+
+```{r}
+elements <- 5000
+n <- 200
+sample_means200 <- rep(NA, elements)
+sample_std200 <- rep(NA, elements)
+
+for(i in 1:elements){
+  sample_house_price <- sample(house_price, n)
+  sample_means200[i] <- mean(sample_house_price)
+  sample_std200[i] <- sd(sample_house_price)
+}
+```
+
+-   Gerando um intervalo de confiança de 95% para a média amostral acima
+
+```{r}
+lower_vector <- sample_means200 - 1.96 * sample_std200 / sqrt(n)
+upper_vector <- sample_means200 + 1.96 * sample_std200 / sqrt(n)
+
+c(lower_vector[1],upper_vector[1])
+
+```
+
+-   Comparando o intervalo de confiança com a média amostral
+
+```{r}
+mean(sample_means200)
+```
+
+-   Na Figura a seguir, listam-se os intervalos de confiança gerados. Nela, observam-se, na cor vermelha, 3 intervalos fora da fronteira da média
+
+```{r}
+plot_ci(lower_vector, upper_vector, mean(sample_means200))
+```
 
 ##### 2. Escolha um intervalo de confiança de sua preferência, desde que não seja de 95%. Qual é o valor crítico apropriado?
 
+-   Para um intervalo de confiança de 90%, utilizando-se de um valor crítico = 1.64
+
+```{r}
+lower_vector_90p <- sample_means200 - 1.64 * sample_std200 / sqrt(n)
+upper_vector_90p <- sample_means200 + 1.64 * sample_std200 / sqrt(n)
+ci_02 = c(lower_vector_90p[1],upper_vector_90p[1])
+```
+
 ##### 3. Calcule 50 intervalos de confiança utilizando o nível de confiança que você escolheu na questão anterior. Você não precisa obter novas amostras: simplesmente calcule os novos intervalos baseado nas médias amostrais e desvios padrão que você já coletou. Utilizando a função plot_ci, crie gráficos de todos os intervalos e calcule a proporção de intervalos que contém a verdadeira média populacional. Compare essa proporção com o nível de confiança escolhido para os intervalos.
+
+-   Observa-se, na Figura a seguir, que reduzindo o valor crítico de 1.96 para 1.64, respectivamente, 95% e 90% de confiança, houve um aumento de intervalos fora da média amostral. No caso desta execução, aumentou de 3 intervalos para 6 intervalos.
+
+```{r}
+plot_ci(lower_vector_90p, upper_vector_90p, mean(sample_means200))
+```

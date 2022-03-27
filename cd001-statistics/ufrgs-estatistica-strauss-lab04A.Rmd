@@ -232,7 +232,7 @@ summary(sample_means150)
 
 -   Portanto, as medidas de dispersão é inversamente proporcional ao tamanho da amostra. Ou seja, ela decai ao aumentar o tamanho da amostra, tendendo a estabilizar-se após um determinado ponto, como se observa nos cálculos da variância e do desvio padrão e nos respectivos gráficos a seguir.
 
--   Gerando, para testes, mais duas distribuições amostrais, uma para n=200 e outra para n=300
+-   Gerando, para testes, mais três distribuições amostrais, uma para n=200, outra para n=300 e, por fim, uma com n=500.
 
 ```{r}
 sample_means200 <- rep(0, 5000)
