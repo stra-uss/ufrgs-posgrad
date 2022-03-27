@@ -23,12 +23,12 @@
 </tbody>
 </table>
 
-##### **Github do Laboratório 04A - Markdown**
+##### **Github do Laboratório 04B - Markdown**
 
 -   \[Github\]
-    (<https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab04A.md>)
+    (<https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab04B.md>)
 
-##### **Laboratório 4A - LAB-04A**
+##### **Laboratório 4B - LAB-04B**
 
 -   Carregamento (ou instalação de R Packages necessários)
 
@@ -229,346 +229,81 @@
     ## 4    244000
     ## 5    189900
 
-#### **Tarefas**
+#### Tarefas
 
-##### Até agora, nós nos ocupamos em estimar a média da área habitável nas casas do município de Ames. Agora você tentará estimar a média dos preços das casas.
+##### 1. Utilizando a seguinte função (que foi carregada junto com o conjunto de dados), crie gráficos de todos os intervalos. Que proporção dos intervalos de confiança contém a verdadeira média populacional? Essa proporção é exatamente igual ao nível de confiança? Se não, explique por quê.
 
--   Criando um subconjunto de dados com a variável preço de venda dos
-    imóveis (SalePrice)
+-   Subconjunto - Variável Dependente SalePrice
 
 <!-- -->
 
     house_price <- ames$SalePrice
 
--   Média populacional do preço de venda dos imóveis
+-   Calculando uma média amostral e um desvio padrão com 200 amostras de
+    5.000 elementos
 
 <!-- -->
 
-    mean(house_price)
-
-    ## [1] 180796.1
-
--   Como se viu nos exercícios anteiores em sala de aula, a distribuição
-    de frequência do preço de imóveis, não segue uma distribuição
-    normal, como se observa no gráficos a seguir, supostamente, causada
-    por outliers referentes a imóvels de alto padrão.
-
-<!-- -->
-
-    histogram=function(x){
-      hist(x,prob=T, main="Distribuição de Frequência da População",
-         xlab="Preço de imóveis ($)")
-      lines(density(x),col="red")
-      curve(dnorm(x,mean(x), sd(x)),add=T,col="blue")
-    }
-    histogram(house_price)
-
-![](ufrgs-estatistica-strauss-lab04A_files/figure-markdown_strict/unnamed-chunk-7-1.png)
-
-##### 1. Retire uma amostra aleatória de 50 elementos da variável price (preço). Com essa amostra, qual é sua melhor estimativa pontual para a média populacional?
-
--   A Média de uma amostra não representativa aleatória de 50 elementos,
-    ou seja 1,7% da população é de:
-
-<!-- -->
-
-    sample_house_price_50 <- sample(house_price, 50)
-    mean(sample_house_price_50)
-
-    ## [1] 191646.2
-
--   A distribuição de frequência para esta amostra de n=50 não
-    representativa, como se observa no gráfico a seguir, a linha
-    vermelha, não segue uma distribuição normal, por sua vez,
-    representada pela linha azul.
-
-<!-- -->
-
-    histogram=function(x){
-      hist(x,prob=T, main="Distribuição de Frequência para amostra n=50 (1.7% da população)",
-         xlab="Preço de imóveis ($)")
-      lines(density(x),col="red")
-      curve(dnorm(x,mean(x), sd(x)),add=T,col="blue")
-    }
-    histogram(sample_house_price_50)
-
-![](ufrgs-estatistica-strauss-lab04A_files/figure-markdown_strict/unnamed-chunk-9-1.png)
-
--   Média de uma amostra aleatória de 200 elementos não representativa,
-    ou seja 6,8% da população
-
-<!-- -->
-
-    sample_house_price_200 <- sample(house_price, 200)
-    mean(sample_house_price_200)
-
-    ## [1] 192299.2
-
--   A distribuição de frequência para esta amostra de n=200 não
-    representativa, como se observa no gráfico a seguir, a linha
-    vermelha, não segue uma distribuição normal, por sua vez,
-    representada pela linha azul.
-
-<!-- -->
-
-    histogram=function(x){
-      hist(x,prob=T, main="Distribuição de Frequência para amostra n=200 (6.8% da população)",
-         xlab="Preço de imóveis ($)")
-      lines(density(x),col="red")
-      curve(dnorm(x,mean(x), sd(x)),add=T,col="blue")
-    }
-    histogram(sample_house_price_200)
-
-![](ufrgs-estatistica-strauss-lab04A_files/figure-markdown_strict/unnamed-chunk-11-1.png)
-
-##### 2. Já que você tem acesso à população, simule a distribuição amostral de ¯ xprice retirando 5000 amostras de 50 elementos da população e calculando 5000 médias amostrais. Armazene essas médias em um vetor com o nome sample\_means50. Crie um gráfico com os resultados, e então descreva a forma dessa distribuição amostral. Baseado nessa distribuição amostral, qual seria seu palpite para a média dos preços das casas na população? Por fim, calcule e informe a média populacional.
-
--   Cálculo da Média amostral de 5.000 amostras de 50 elementos
-    aleatórios
-
-<!-- -->
-
-    sample_means50 <- rep(0, 5000)
-    for(i in 1:5000){
-      sample_house_price <- sample(house_price, 50)
-      sample_means50[i] <- mean(sample_house_price)
-    }
-
--   Média Amostral (5.000 amostras de 50 elementos) do preço de venda
-    dos imóveis
-
-<!-- -->
-
-    mean(sample_means50)
-
-    ## [1] 180781.4
-
--   Média Populacional do preço de venda dos imóveis
-
-<!-- -->
-
-    mean(house_price)
-
-    ## [1] 180796.1
-
--   Por meio do cálculo da média amostral com n=50, como se observa no
-    gráfico a seguir, a distribuição de frequência é representativa e,
-    visualmente, possui uma distribuição normal.
-
-<!-- -->
-
-    histogram=function(x){
-      hist(x,prob=T, main="Distribuição da média amostral n = 50",
-         xlab="Preço de imóveis ($)")
-      lines(density(x),col="red")
-      curve(dnorm(x,mean(x), sd(x)),add=T,col="blue")
-    }
-    histogram(sample_means50)
-
-![](ufrgs-estatistica-strauss-lab04A_files/figure-markdown_strict/unnamed-chunk-15-1.png)
-
--   Observa-se portanto, que a média da distribuição amostral, por meio
-    de 5.000 amostras com 50 elementosas se aproximou à média
-    populacional.
-
-##### 3. Mude o tamanho da sua amostra de 50 para 150, e então calcule a distribuição amostral utilizando o mesmo método descrito acima, e guarde as médias em um novo vetor com o nome sample\_means150. Descreva a forma dessa distribuição amostral e compare-a com a distribuição amostral para a amostra de 50 elementos. Com base nessa distribuição amostral, qual seria seu palpite sobre a média dos preços de vendas de casas no município de Ames?
-
--   Cálculo da Média amostral de 5.000 amostras de 150 elementos
-    aleatórios
-
-<!-- -->
-
-    sample_means150 <- rep(0, 5000)
-    for(i in 1:5000){
-      sample_house_price <- sample(house_price, 150)
-      sample_means150[i] <- mean(sample_house_price)
-    }
-
--   Média Amostral (5.000 amostras de 150 elementos) do preço de venda
-    dos imóveis
-
-<!-- -->
-
-    mean(sample_means150)
-
-    ## [1] 180793.4
-
--   Para o cálculo da média amostral com n=150, como se observa no
-    gráfico a seguir, a distribuição de frequência é representativa e,
-    visualmente, possui uma distribuição normal.
-
-<!-- -->
-
-    histogram=function(x){
-      hist(x,prob=T, main="Distribuição da média amostral n = 150",
-         xlab="Preço de imóveis ($)")
-      lines(density(x),col="red")
-      curve(dnorm(x,mean(x), sd(x)),add=T,col="blue")
-    }
-    histogram(sample_means150)
-
-![](ufrgs-estatistica-strauss-lab04A_files/figure-markdown_strict/unnamed-chunk-18-1.png)
-
--   Observa-se portanto, que a média da distribuição amostral, por meio
-    de 5.000 amostras com 150 elementosas se aproximou à média
-    populacional.
-
-##### 4. Das distribuições amostrais calculadas nos exercícios 2 e 3, qual tem menor dispersão? Se estamos interessados em estimativas que estão mais próximas do valor verdadeiro, preferiríamos uma distribuição com uma dispersão pequena ou grande?
-
--   Variância para a distribuição amostral do exercício 02, para n=50:
-
-<!-- -->
-
-    var_n50 = var(sample_means50)
-    var_n50
-
-    ## [1] 126718248
-
--   Desvio Padrão para a distribuição amostral do exercício 02, para
-    n=50:
-
-<!-- -->
-
-    std_dev_n50 = sqrt(var_n50)
-    std_dev_n50
-
-    ## [1] 11256.92
-
--   Estatísticas descritivas básicas para a distribuição amostral do
-    exercício 02, para n=50:
-
-<!-- -->
-
-    summary(sample_means50)
-
-    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##  145621  173020  180331  180781  187992  234921
-
--   Variância para a distribuição amostral do exercício 03, para n=150:
-
-<!-- -->
-
-    var_n150 = var(sample_means150)
-    var_n150
-
-    ## [1] 39885720
-
--   Desvio Padrão para a distribuição amostral do exercício 03, para
-    n=150:
-
-<!-- -->
-
-    std_dev_n150 = sqrt(var_n150)
-    std_dev_n150
-
-    ## [1] 6315.514
-
--   Estatísticas descritivas básicas para a distribuição amostral do
-    exercício 03, para n=150:
-
-<!-- -->
-
-    summary(sample_means150)
-
-    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##  157712  176458  180677  180793  184970  203801
-
--   Portanto, as medidas de dispersão é inversamente proporcional ao
-    tamanho da amostra. Ou seja, ela decai ao aumentar o tamanho da
-    amostra, tendendo a estabilizar-se após um determinado ponto, como
-    se observa nos cálculos da variância e do desvio padrão e nos
-    respectivos gráficos a seguir.
-
--   Gerando, para testes, mais três distribuições amostrais, uma para
-    n=200, outra para n=300 e, por fim, uma com n=500.
-
-<!-- -->
-
-    sample_means200 <- rep(0, 5000)
-    for(i in 1:5000){
-      sample_house_price <- sample(house_price, 200)
+    elements <- 5000
+    n <- 200
+    sample_means200 <- rep(NA, elements)
+    sample_std200 <- rep(NA, elements)
+
+    for(i in 1:elements){
+      sample_house_price <- sample(house_price, n)
       sample_means200[i] <- mean(sample_house_price)
+      sample_std200[i] <- sd(sample_house_price)
     }
 
-    sample_means300 <- rep(0, 5000)
-    for(i in 1:5000){
-      sample_house_price <- sample(house_price, 300)
-      sample_means300[i] <- mean(sample_house_price)
-    }
-
-    sample_means500 <- rep(0, 5000)
-    for(i in 1:5000){
-      sample_house_price <- sample(house_price, 500)
-      sample_means500[i] <- mean(sample_house_price)
-    }
-
--   Variância para a distribuição amostral de n=200
+-   Gerando um intervalo de confiança de 95% para a média amostral acima
 
 <!-- -->
 
-    var_n200 = var(sample_means200)
-    var_n200
+    lower_vector <- sample_means200 - 1.96 * sample_std200 / sqrt(n)
+    upper_vector <- sample_means200 + 1.96 * sample_std200 / sqrt(n)
 
-    ## [1] 29906672
+    c(lower_vector[1],upper_vector[1])
 
--   Desvio Padrão para a distribuição amostral de n=200
+    ## [1] 168733.1 192298.6
 
-<!-- -->
-
-    std_dev_n200 = sqrt(var_n200)
-    std_dev_n200
-
-    ## [1] 5468.699
-
--   Variância para a distribuição amostral de n=300
+-   Comparando o intervalo de confiança com a média amostral
 
 <!-- -->
 
-    var_n300 = var(sample_means300)
-    var_n300
+    mean(sample_means200)
 
-    ## [1] 19487388
+    ## [1] 180773.2
 
--   Desvio Padrão para a distribuição amostral de n=300
-
-<!-- -->
-
-    std_dev_n300 = sqrt(var_n300)
-    std_dev_n300
-
-    ## [1] 4414.452
-
--   Variância para a distribuição amostral de n=500
+-   Na Figura a seguir, listam-se os intervalos de confiança gerados.
+    Nela, observam-se, na cor vermelha, 3 intervalos fora da fronteira
+    da média
 
 <!-- -->
 
-    var_n500 = var(sample_means500)
-    var_n500
+    plot_ci(lower_vector, upper_vector, mean(sample_means200))
 
-    ## [1] 10435013
+![](ufrgs-estatistica-strauss-lab04B_files/figure-markdown_strict/unnamed-chunk-9-1.png)
 
--   Desvio Padrão para a distribuição amostral de n=500
+##### 2. Escolha um intervalo de confiança de sua preferência, desde que não seja de 95%. Qual é o valor crítico apropriado?
+
+-   Para um intervalo de confiança de 90%, utilizando-se de um valor
+    crítico = 1.64
 
 <!-- -->
 
-    std_dev_n500 = sqrt(var_n500)
-    std_dev_n500
+    lower_vector_90p <- sample_means200 - 1.64 * sample_std200 / sqrt(n)
+    upper_vector_90p <- sample_means200 + 1.64 * sample_std200 / sqrt(n)
+    ci_02 = c(lower_vector_90p[1],upper_vector_90p[1])
 
-    ## [1] 3230.327
+##### 3. Calcule 50 intervalos de confiança utilizando o nível de confiança que você escolheu na questão anterior. Você não precisa obter novas amostras: simplesmente calcule os novos intervalos baseado nas médias amostrais e desvios padrão que você já coletou. Utilizando a função plot\_ci, crie gráficos de todos os intervalos e calcule a proporção de intervalos que contém a verdadeira média populacional. Compare essa proporção com o nível de confiança escolhido para os intervalos.
 
-    n <-c(50,150,200,300,500)
-    variancia <- c(var_n50, var_n150, var_n200, var_n300, var_n500)
-    desvio_padrao <- c(std_dev_n50, std_dev_n150, std_dev_n200, std_dev_n300, std_dev_n500)
-    df_samples <-data.frame(n,variancia, desvio_padrao) 
+-   Observa-se, na Figura a seguir, que reduzindo o valor crítico de
+    1.96 para 1.64, respectivamente, 95% e 90% de confiança, houve um
+    aumento de intervalos fora da média amostral. No caso desta
+    execução, aumentou de 3 intervalos para 6 intervalos.
 
-    graph = ggplot(df_samples, aes(n)) + 
-    geom_line(aes(y = variancia, colour = "variancia"),  color="blue")  + ylab("Variância") 
-    graph
+<!-- -->
 
-![](ufrgs-estatistica-strauss-lab04A_files/figure-markdown_strict/unnamed-chunk-33-1.png)
+    plot_ci(lower_vector_90p, upper_vector_90p, mean(sample_means200))
 
-    graph = ggplot(df_samples, aes(n)) + 
-    geom_line(aes(y = desvio_padrao, colour = "desvio_padrao"), color="red") + ylab("Desvio Padrão") 
-    graph
-
-![](ufrgs-estatistica-strauss-lab04A_files/figure-markdown_strict/unnamed-chunk-34-1.png)
+![](ufrgs-estatistica-strauss-lab04B_files/figure-markdown_strict/unnamed-chunk-11-1.png)
