@@ -1,9 +1,9 @@
 ---
 title: "UFRGS - Especialização em Ciência de Dados SERPRO - INF/UFRGS (2022-2023)"
-#output: md_document
-output: 
-  html_document:
-    code_folding: hide
+output: md_document
+#output: 
+#  html_document:
+#    code_folding: hide
 ---
 
 |                 |                         |
@@ -34,58 +34,314 @@ library("gridExtra", warn.conflicts = FALSE)
 -   Carregamento dos Datasets
 
 ```{r}
-
+download.file("http://www.openintro.org/stat/data/nc.RData", destfile = "nc.RData")
+load("nc.RData")
 ```
 
 -   Pré-visualização dos tipos de variáveis dataset
 
 ```{r}
-str()
+str(nc)
 ```
 
 -   Pré-visualização de uma pequena amostra do dataset
 
 ```{r}
-head(, 5)
+head(nc, 5)
 ```
 
-1. Calcule o intervalo de confiança de 95% para a duração média das gravidezes (weeks) e o interprete
+#### **Tarefas**
 
-no contexto do conjunto de dados. Perceba que, uma vez que você está realizando uma inferência
+##### 1. Calcule o intervalo de confiança de 95% para a duração média das gravidezes (weeks) e o interprete no contexto do conjunto de dados. Perceba que, uma vez que você está realizando uma inferência sobre um único parâmetro populacional, não há nenhuma variáveis explanatória, e portanto você pode omitir a variável x da função.
 
-sobre um único parâmetro populacional, não há nenhuma variáveis explanatória, e portanto você
+-   Calculando o intervalo de confiança de 95%, para a variável tempo (em semanas) de gestação, por meio da função inference, no R, gerou-se um intervalo ede 38.15 até 38.51 semanas de gestação.
 
-pode omitir a variável x da função.
+```{r}
+inference(y = nc$weeks, est = "mean", type = "ci",  conflevel = 0.95,
+          alternative = "twosided", method = "theoretical")
+```
 
-2. Calcule um novo intervalo de confiança para o mesmo parâmetro com nível de confiança de 90%.
+##### 2. Calcule um novo intervalo de confiança para o mesmo parâmetro com nível de confiança de 90%. Você pode mudar o nível de confiança adicionando um novo argumento à função: conflevel =0.90.
 
-Você pode mudar o nível de confiança adicionando um novo argumento à função: conflevel =0.90.
+-   Calculando o intervalo de confiança de 90%, para a variável tempo (em semanas) de gestação, por meio da função inference, no R, gerou-se um intervalo ede 38.18 até 38.43 semanas de gestação.
 
-3. Realize um teste de hipótese para avaliar se o a média do peso ganho pelas mães mais jovens é
+```{r}
+inference(y = nc$weeks, est = "mean", type = "ci",  conflevel = 0.9,
+          alternative = "twosided", method = "theoretical")
+```
 
-diferente da média de peso ganho pelas mães mais velhas.
+##### 3. Realize um teste de hipótese para avaliar se o a média do peso ganho pelas mães mais jovens é diferente da média de peso ganho pelas mães mais velhas.
 
-4. Agora, um tarefa não-inferencial: determine o ponto de corte da idade das mães jovens e maduras.
+```{r}
+younger = nc[nc$mature == "younger mom", ]
+older = nc[nc$mature == "mature mom", ]
+```
 
-Utilize um método da sua escolha, e explique como seu método funciona.
+```{r}
+t.test(younger$weight, older$weight ,alternative=c("two.sided"),var.equal=F, conf.level=0.9)
+```
 
-5. Escolha um par de variáveis, sendo uma numérica e outra categorial, e desenvolva um pergunta de
+```{r}
 
-pesquisa para avaliar a relação entre essas variáveis. Formule a questão de maneira que ela possa ser
+```
 
-respondida utilizando um teste de hipótese e/ou um intervalo de confiança. Responda a sua questão
+##### 4. Agora, um tarefa não-inferencial: determine o ponto de corte da idade das mães jovens e maduras. Utilize um método da sua escolha, e explique como seu método funciona.
 
-utilizando a função inference, informe os resultados estatísticos, e também elabora uma explicação
-
-em linguagem simples.
-
-
-
-
-Exercícios Aula 4
+```{r}
+younger_age = nc[nc$mage <= 40, ]
+older_age = nc[nc$mage >= 41, ]
+```
 
 
+##### 5. Escolha um par de variáveis, sendo uma numérica e outra categorial, e desenvolva um pergunta de pesquisa para avaliar a relação entre essas variáveis. Formule a questão de maneira que ela possa ser respondida utilizando um teste de hipótese e/ou um intervalo de confiança. Responda a sua questão utilizando a função inference, informe os resultados estatísticos, e também elabora uma explicação em linguagem simples.
 
-Fazer exercícios 1 e 2 dos slides 15, 18 e 22.
+-   Calculando o intervalo de confiança de 95%, utilizando-se as variáveis estado civil x idade, por meio da função inference, no R, gerou-se um intervalo ede 38.15 até 38.51 semanas de gestação.
 
-Utilize os três exemplos feitos em aula como referência (para resolver e interpretar).
+```{r}
+inference(x = nc$marital ,y = nc$mage, est = "mean", type = "ci",  conflevel = 0.95,
+          alternative = "twosided", method = "theoretical")
+```
+
+#### Exercícios Aula 4
+
+##### 1. Fazer exercícios 1 e 2 dos slides 15, 18 e 22. Utilize os três exemplos feitos em aula como referência (para resolver e interpretar).
+
+##### Slide 15
+
+###### Exercício 1: Para testar a performance em termos de consumo de combustível de um novo carro compacto, o fabricante sorteou seis motoristas profissionais que dirigiram o automóvel de Pelotas a Porto Alegre. O consumo do carro (em litros) para cada um dos seis motoristas foi de: - 27,2; - 29,3; - 31,5; - 28,7; - 30,2; - 29,6.
+
+###### Baseado nesses dados e utilizando nível de significância de 5%, o fabricante pode indicar que o consumo médio do novo carro é de 30 litros para viagens nesse percurso?
+
+-   $H_0:\mu = 30$
+
+-   $H_1:\mu \neq 30$
+
+-   Testando a normalidade:
+
+```{r}
+consumo <- c(27.2, 29.3, 31.5, 28.7, 30.2, 29.6)
+shapiro.test(consumo)
+```
+
+-   Aplicando o Teste T:
+
+```{r}
+mi0 <- 30
+t.test(consumo, mu = mi0, conf.level = 0.95)
+```
+
+-   T-crítico (0.025)
+
+```{r}
+qt(0.025,df=5, lower.tail = T)
+```
+
+-   t-calculado = -0.9894
+-   t-crítico = -2.57
+-   p-valor = 0.3679 com alfa = 0.05, sendo p-value \> alfa, então aceita-se H0.
+-   Os valores de 27.9 até 30.93 compreendem o intervalo de confiança de 95%. Assim, incluindo, neste intervalo, o valor de 30 litros.
+
+###### Exercício 2: O Instituto de Nutrição da América Central e Panamá fez um estudo intensivo de resultados de dietas publicados em revistas científicas. Uma dieta aplicada a 15 pessoas produziu os seguintes níveis de colesterol (em mg/l):
+
+```{r}
+dieta <- c(204, 108, 140, 152, 158, 129, 175, 146, 157, 174, 192, 194, 144, 152, 135)
+```
+
+##### Sabendo-se que o nível médio normal de colesterol é de 190 mg/l, verifique se a redução no teor médio de colesterol das pessoas submetidas a essa dieta foi significativa, com alfa=0,05.
+
+-   $H_0:\mu = 190mg/l$
+
+-   $H_1:\mu \neq 190 mg/l$
+
+-   Testando a normalidade:
+
+```{r}
+shapiro.test(dieta)
+```
+
+-   Aplicando o Teste T (Teste Unilateral - Parâmetro less):
+
+```{r}
+mi0 <- 190
+t.test(dieta, alternative = 'less', mu = mi0, conf.level = 0.95)
+```
+
+-   T-crítico (0.025)
+
+```{r}
+qt(0.025,df=14, lower.tail = T)
+```
+
+-   t-calculado = - 4.8032
+-   t-crítico = -2.144787
+-   p-valor = 0.00001404 com alfa = 0.05, sendo P \< alfa, então rejeita-se H0
+
+##### Slide 18
+
+###### Os dados abaixo dão os acertos obtidos por oito soldados num experimento destinado a determinar se a precisão do tiro é afetada pela maneira de dispor os olhos: com o olho direito aberto ou com o olho esquerdo aberto. Que conclusão você poderia tirar, com alfa = 0,05?
+
+```{r}
+soldier_01 <- c(44, 39, 33, 56, 43, 56, 47, 58)
+soldier_02 <- c(40, 37, 28, 53, 48 ,51, 45, 60)
+```
+
+-   $H_0:\mu_x = \mu_y (\mu_d = 0)$
+
+-   $H_1:\mu_x \neq \mu_y (\mu_d \neq 0)$
+
+-   Testando a normalidade das duas amostras
+
+```{r}
+shapiro.test(soldier_01)
+```
+
+```{r}
+shapiro.test(soldier_02)
+```
+
+-   Aplicando o Teste T Pareado:
+
+```{r}
+t.test(soldier_01, soldier_02, paired=T)
+```
+
+-   T-crítico (0.025)
+
+```{r}
+qt(0.025,df=7, lower.tail = T)
+```
+
+-   t-calculado = 1.4
+-   t-crítico = -2.364624
+-   p-valor = 0.2042 com alfa =0.05, endo P \> alfa, então aceita-se H0
+
+###### Tendo interesse em estudar os efeitos de determinada dieta alimentar sobre o aumento do peso corporal em cobaias adultas, um investigador tomou uma amostra de 9 cobaias. Determinou seus pesos antes e três meses após a administração da nova dieta. Com os dados a seguir, analise o efeito da nova dieta, par alfa = 0,05.
+
+```{r}
+dieta_01 <- c(54, 61, 50, 74, 79, 58, 55, 49, 63)
+dieta_02 <- c(57, 66, 53, 73, 82, 58, 56, 53, 63)
+```
+
+-   $H_0:\mu_x = \mu_y (\mu_d = 0)$
+
+-   $H_1:\mu_x \neq \mu_y (\mu_d \neq 0)$
+
+-   Testando a normalidade das duas amostras
+
+```{r}
+shapiro.test(dieta_01)
+```
+
+```{r}
+shapiro.test(dieta_02)
+```
+
+-   Aplicando o Teste T pareado:
+
+```{r}
+t.test(dieta_01, dieta_02, paired=T)
+```
+
+-   T-crítico (0.025)
+
+```{r}
+qt(0.025,df=8, lower.tail = T)
+```
+
+-   t-calculado = -2.9104
+-   t-crítico = -2.306004
+-   p-valor = 0.01958 com alfa = 0.05, então rejeita-se H0
+
+##### Slide 22
+
+###### Para verificar o grau de adesão de uma nova cola para vidros, preparam-se dois tipos de montagem; cruzado (A), onde a cola é posta em forma de X, e quadrado (B), onde a fórmula é posta nas 4 bordas. O resultado para a resistência das duas amostras está abaixo. Para um nível de 5% de significância que tipo de conclusão poderia ser tirada?
+
+```{r}
+metodo_a <- c(16, 14, 19, 18, 19, 20, 15, 18, 17, 18)
+metodo_b <- c(13, 19, 14, 17, 21, 24, 10, 14, 13, 15)
+```
+
+-   $H_0:\mu_x = \mu_y (\mu_d = 0)$
+
+-   $H_1:\mu_x \neq \mu_y (\mu_d \neq 0)$
+
+-   Testando a normalidade das duas amostras
+
+```{r}
+shapiro.test(metodo_a)
+```
+
+```{r}
+shapiro.test(metodo_b)
+```
+
+-   Aplicando o Teste T:
+
+```{r}
+t.test(metodo_a,metodo_b,alternative=c("two.sided"),var.equal=F, conf.level=0.9)
+```
+
+-   T-crítico (0.025)
+
+```{r}
+qt(0.025,df=12, lower.tail = T)
+```
+
+-   t-calculado = 1.1813
+
+-   t-crítico = -2.178813
+
+-   p-valor = 0.3589 com alfa = 0.05, sendo p \> alfa, então aceita-se H0
+
+-   Aplicando o Teste F:
+
+```{r}
+var.test(metodo_a,metodo_b,alternative=c("two.sided"),var.equal=F, conf.level=0.9)
+```
+
+-   F-crítico (0.025)
+
+```{r}
+qt(0.025,df=9, lower.tail = T)
+```
+
+-   f-calculado = 0.2
+-   f-crítico = -2.178813
+-   p-valor = 0.02507 com alfa = 0.05, sendo p \> alfa, então rejeita-se H0
+
+###### A fim de comparar a eficácia de dois operários, foram tomadas, para cada um, sete medidas do tempo gasto, em segundos, para realizar certa operação. Os resultados obtidos são dados a seguir. Pergunta-se se, ao nível de5% de significância, os operários devem ser considerados igualmente eficazes ou não.
+
+```{r}
+operario_a <- c(35, 32, 40, 36, 35, 32,33)
+operario_b <- c(29, 35, 36, 34, 30, 33, 31)
+```
+
+-   $H_0:\mu_x = \mu_y (\mu_d = 0)$
+
+-   $H_1:\mu_x \neq \mu_y (\mu_d \neq 0)$
+
+-   Testando a normalidade das duas amostras
+
+```{r}
+shapiro.test(operario_a)
+```
+
+```{r}
+shapiro.test(operario_b)
+```
+
+-   Aplicando o Teste T Pareado:
+
+```{r}
+t.test(operario_b,operario_b,alternative=c("two.sided"),var.equal=F, conf.level=0.9)
+```
+
+-   T-crítico (0.025)
+
+```{r}
+qt(0.025,df=6, lower.tail = T)
+```
+
+-   t-calculado = 1.7516
+-   t-crítico = 2.446912
+-   p-valor = 0.1304 com alfa = 0.05, sendo p \> alfa, então aceita-se H0
