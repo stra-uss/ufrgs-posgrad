@@ -93,6 +93,7 @@ older_age = nc[nc$mage >= 41, ]
 ```
 
 
+
 ##### 5. Escolha um par de variáveis, sendo uma numérica e outra categorial, e desenvolva um pergunta de pesquisa para avaliar a relação entre essas variáveis. Formule a questão de maneira que ela possa ser respondida utilizando um teste de hipótese e/ou um intervalo de confiança. Responda a sua questão utilizando a função inference, informe os resultados estatísticos, e também elabora uma explicação em linguagem simples.
 
 -   Calculando o intervalo de confiança de 95%, utilizando-se as variáveis estado civil x idade, por meio da função inference, no R, gerou-se um intervalo ede 38.15 até 38.51 semanas de gestação.
