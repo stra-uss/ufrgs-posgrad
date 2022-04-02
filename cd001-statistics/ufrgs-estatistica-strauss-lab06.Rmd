@@ -56,22 +56,113 @@ head(atheism, 5)
 
 ##### 1. Responda às duas perguntas seguintes utilizando a função inference. Como sempre, descreva as hipóteses para qualquer teste que você realizar e esboce sobre as condições para inferência.
 
-  - (a) Há evidência convincente de que a Espanha teve uma mudança em seu índice de ateísmo entre 2005 e 2012?
+-   Dividindo em dois subconjuntos (espanha e estados unidos)
 
-  - Dica: Crie um novo conjunto de dados para os respondentes da Espanha. Depois, utilize suas respostas como a primeira entrada na função inference, e utilize a variável year (ano) para definir os grupos.
+```{r}
+spain_people = atheism[atheism$nationality == "Spain", ]
+north_american_people = atheism[atheism$nationality == "United States", ]
+```
 
-  - (b) Há evidência convincente de que os Estados Unidos tiveram uma mudança em seu índice de ateísmo entre 2005 e 2012?
+-   Função inference para o subconjunto de pessoas da Espanha
+
+```{r}
+inference(y = spain_people$response,  x = factor(spain_people$year, levels = c("2005","2012")), est = "proportion", type = "ci",  conflevel = 0.95, method = "theoretical", success = "atheist")
+```
+
+-   Função inference para o subconjunto de pessoas dos Estados Unidos
+
+```{r}
+inference(y = north_american_people$response,  x = factor(north_american_people$year, levels = c("2005","2012")), est = "proportion", type = "ci",  conflevel = 0.95, method = "theoretical", success = "atheist")
+```
+
+-   
+
+    (a) Há evidência convincente de que a Espanha teve uma mudança em seu índice de ateísmo entre 2005 e 2012?
+
+-   Dica: Crie um novo conjunto de dados para os respondentes da Espanha. Depois, utilize suas respostas como a primeira entrada na função inference, e utilize a variável year (ano) para definir os grupos.
+
+    -   R: Visualmente, pelo gráfico box-plot, não se observa um aumento, na espanha, do ateísmo no período de 2005 a 2012.
+
+-   
+
+    (b) Há evidência convincente de que os Estados Unidos tiveram uma mudança em seu índice de ateísmo entre 2005 e 2012?
+
+-   R: Visualmente, pelo gráfico box-plot, se observa um aumento, nos estados unidos, do ateísmo no período de 2005 a 2012.
 
 ##### 2. Se de fato não houve nenhuma mudança no índice de ateísmo nos países listados na Tabela 4, em quantos países você esperar detectar uma mudança (com um nível de significância de 0,05) simplesmente por acaso?
 
 -   Dica: Procure no índice do livro sobre erros do tipo 1
 
+-   R: Por ANOVA
+
+```{r}
+aj <- aov(lm(year ~ response, atheism))
+aj
+```
+
+```{r}
+lapply(atheism[c('response', 'nationality')], unique)
+```
+
 ##### 3. Suponha que você foi contratado pelo governo local para estimar a proporção de residentes que participam de cultos religiosos semanalmente. De acordo com diretrizes, a estimativa deve ter uma margem de erro inferior a 1% com nível de confiança de 95%. Você não tem nenhuma noção de que valor supor para p. Quanto pessoas você teria que amostrar para garantir que você está dentro das diretrizes?
 
 -   Dica: Retome seu gráfico da relação entre p e a margem de erro. Não use o conjunto de dados para responder a essa questão.
+
+```{r}
+n = (1.96^2) * (0.5*(1-0.5))/(0.01^2)
+n
+```
+
+-   R: Seriam necessárias 9.604 pessoas
 
 ##### 4. Exercícios Aula 5
 
 -   Fazer exercícios do slide 17.
 
 -   Utilize os três exemplos feitos em aula como referência (para resolver e interpretar).
+
+```{r}
+prop.test(x=c(500,505),n=c(44925,44910),alternative="two.sided",correct = F,conf.level = 0.95)
+```
+
+##### Exercício 1: Um fabricante garante que 90% dos equipamentos que fornece a uma fábrica estão de acordo com as especificações exigidas. O exame de uma amostra de 200 peças desse equipamento revelou 25 defeituosas. Obtenha o intervalo de confiança de 95% para a proporção de equipamentos defeituosos e teste a garantiado fabricante
+
+```{r}
+#IC
+n1 = 200
+x1 = 180
+n2 = 200
+x2 = 175
+phat1 = x1/n1
+phat2 = x2/n2
+
+SE = sqrt((phat1*(1-phat1)/n1)+(phat2*(1-phat2)/n2))
+(phat1-phat2)- + c(-1, 1)*qnorm(.975)*SE
+```
+
+-   R: O IC está entre 0.086 e -0.036
+
+##### Exercício 2: Em uma pesquisa de opinião, 32 dentre 80 homens declararam apreciar certa revista, acontecendo o mesmo com 26 dentre 50 mulheres. Ao nível de 5% de significância os homens e as mulheres apreciam igualmente a revista?
+
+m 26 24 50\
+h 32 48 80
+
+```{r}
+prop.test(x=c(26,32),n=c(50,80),alternative="two.sided",correct = F,conf.level = 0.95)
+```
+
+##### Exercício 3: A tabela abaixo resume os resultados de uma pesquisa da Pew Research. Gostaríamos de determinar se há realmente diferenças nas classificações de aprovação de Obama, democratas no Congresso e republicanos no Congresso. Utilizando nível de significância de 5%, teste as hipóteses:
+
+-   H 0 : Não há diferença nas classificações de aprovação entre os três grupos.
+-   H 1 : Existe alguma diferença nas classificações de aprovação entre os três grupos.
+
+```{r}
+pew_research = matrix(c(842,616,736,646,541,842),nrow=2)
+chisq.test(pew_research)
+qchisq(0.05,df=2,lower.tail=FALSE)
+chisq.test(pew_research)$stdres
+```
+
+-   H0: não há diferenças na classificação de democratas e republicanos e Obama
+-   H1: existe alguma diferença na classificação de democratas e republicanos e Obama
+-   Para p P-valor \< 0.05, rejeita-se H0

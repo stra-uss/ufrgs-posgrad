@@ -34,25 +34,26 @@ library("gridExtra", warn.conflicts = FALSE)
 -   Carregamento dos Datasets
 
 ```{r}
-download.file("http://www.openintro.org/stat/data/atheism.RData", destfile = "atheism.RData")
-load("atheism.RData")
+download.file("http://www.openintro.org/stat/data/mlb11.RData", destfile = "mlb11.RData")
+load("mlb11.RData")
 ```
 
 -   Pré-visualização dos tipos de variáveis dataset
 
 ```{r}
-str(atheism)
+str(mlb11)
 ```
 
 -   Pré-visualização de uma pequena amostra do dataset
 
 ```{r}
-head(atheism, 5)
+head(mlb11, 5)
 ```
 
 #### **Tarefas**
 
 ##### 1. Escolha outra variável tradicional contida no banco de dados mlb11 que você acha que poderia ser um bom preditor da variável runs (pontos). Crie um gráfico de dispersão das duas variáveis e ajuste um modelo linear. Visualmente, parece haver uma relação linear?
+
 
 ##### 2. Compare essa relação com a relação entre runs (pontos) e at_bats (vez ao taco). Utilize os valores R2 do sumário dos dois modelos para compará-los. A variável que vocês escolheu parece predizer runs (pontos) melhor do que at_bats (vez ao taco)? Como você justificaria sua resposta?
 
