@@ -1,0 +1,67 @@
+---
+title: "UFRGS - Especialização em Ciência de Dados SERPRO - INF/UFRGS (2022-2023)"
+output: md_document
+#output: 
+#  html_document:
+#    code_folding: hide
+---
+
+|                 |                         |
+|-----------------|-------------------------|
+| **Disciplina**  | :CD001-Estatística      |
+| **Professora**  | :Lisiane Selau          |
+| **Aluno**       | :Strauss Cunha Carvalho |
+| **Labarotório** | :LAB-07                 |
+| **Data**        | :01/04/2022             |
+
+##### **Github do Laboratório 07 - Markdown**
+
+-   [Github] (<https://github.com/stra-uss/ufrgs-posgrad/blob/main/cd001-statistics/ufrgs-estatistica-strauss-lab07.md>)
+
+##### **Laboratório 7 - LAB-07**
+
+-   Carregamento (ou instalação de R Packages necessários)
+
+```{r}
+#install.packages("ggplot2")
+#install.packages("dplyr")
+#install.packages("gridExtra")
+library(ggplot2)
+library(dplyr, warn.conflicts = FALSE)
+library("gridExtra", warn.conflicts = FALSE)
+```
+
+-   Carregamento dos Datasets
+
+```{r}
+download.file("http://www.openintro.org/stat/data/atheism.RData", destfile = "atheism.RData")
+load("atheism.RData")
+```
+
+-   Pré-visualização dos tipos de variáveis dataset
+
+```{r}
+str(atheism)
+```
+
+-   Pré-visualização de uma pequena amostra do dataset
+
+```{r}
+head(atheism, 5)
+```
+
+#### **Tarefas**
+
+##### 1. Escolha outra variável tradicional contida no banco de dados mlb11 que você acha que poderia ser um bom preditor da variável runs (pontos). Crie um gráfico de dispersão das duas variáveis e ajuste um modelo linear. Visualmente, parece haver uma relação linear?
+
+##### 2. Compare essa relação com a relação entre runs (pontos) e at_bats (vez ao taco). Utilize os valores R2 do sumário dos dois modelos para compará-los. A variável que vocês escolheu parece predizer runs (pontos) melhor do que at_bats (vez ao taco)? Como você justificaria sua resposta?
+
+##### 3. Agora que você pode resumir a relação linear entre duas variáveis, investigue a relação entre runs (pontos) e cada uma das outras cinco variáveis tradicionalmente utilizadas no beisebol. Qual variável prediz melhor o valor de runs? Justifique sua conclusão utilizando métodos gráficos e numéricos que já discutimos (para ser conciso, inclua apenas os resultados da melhor variável, não de todas as cinco).
+
+##### 4. Agora examine as três variáveis mais recentes. Essas são as estatísticas utilizadas pelo autor do filme O Homem que Mudou o Jogo para predizer o sucesso de um time. De modo geral, elas são mais ou menos eficazes para predizer os pontos do que as variáveis mais tradicionais? Explique utilizando evidências gráficas e numéricas. De todas as dez variáveis que nós analisamos, qual parece ser o melhor preditor da variável runs (pontos)? Utilizando as informações limitadas (ou não tão limitadas) que você conhece sobre estas estatísticas do beisebol, seu resultado faz sentido?
+
+##### 5. Verifique os diagnósticos do modelo para o modelo de regressão com a variável que você escolheu como o melhor preditor dos pontos (runs).
+
+##### FINALIZANDO...
+
+-   Encontrar um modelo de Regressão Linear Múltipla para os dados do LAB07.
